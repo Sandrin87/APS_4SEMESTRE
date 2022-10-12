@@ -11,7 +11,7 @@ package View;
 public class Menu extends javax.swing.JFrame {
 
     /**
-     * Creates new form Livraria_Home
+     * Creates new form Menu
      */
     public Menu() {
         initComponents();
@@ -26,9 +26,85 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu_Insert = new javax.swing.JMenu();
+        jMenuItem_InsertBooks = new javax.swing.JMenuItem();
+        jMenuItem_InsertAuthors = new javax.swing.JMenuItem();
+        jMenuItem_InsertPublishers = new javax.swing.JMenuItem();
+        jMenu_List = new javax.swing.JMenu();
+        jMenuItem_ListBooks = new javax.swing.JMenuItem();
+        jMenuItem_ListAuthors = new javax.swing.JMenuItem();
+        jMenuItem_ListPublishers = new javax.swing.JMenuItem();
+        jMenuItem_ListWithCustomParameters = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Livraria");
-        setName("FRM_Home"); // NOI18N
+
+        jMenu_Insert.setText("Inserir");
+
+        jMenuItem_InsertBooks.setText("Cadastrar Livros");
+        jMenuItem_InsertBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_InsertBooksActionPerformed(evt);
+            }
+        });
+        jMenu_Insert.add(jMenuItem_InsertBooks);
+
+        jMenuItem_InsertAuthors.setText("Cadastrar Autores");
+        jMenuItem_InsertAuthors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_InsertAuthorsActionPerformed(evt);
+            }
+        });
+        jMenu_Insert.add(jMenuItem_InsertAuthors);
+
+        jMenuItem_InsertPublishers.setText("Cadastrar Editoras");
+        jMenuItem_InsertPublishers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_InsertPublishersActionPerformed(evt);
+            }
+        });
+        jMenu_Insert.add(jMenuItem_InsertPublishers);
+
+        jMenuBar.add(jMenu_Insert);
+
+        jMenu_List.setText("Listar & Editar");
+
+        jMenuItem_ListBooks.setText("Listar Livros");
+        jMenuItem_ListBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ListBooksActionPerformed(evt);
+            }
+        });
+        jMenu_List.add(jMenuItem_ListBooks);
+
+        jMenuItem_ListAuthors.setText("Listar Autores");
+        jMenuItem_ListAuthors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ListAuthorsActionPerformed(evt);
+            }
+        });
+        jMenu_List.add(jMenuItem_ListAuthors);
+
+        jMenuItem_ListPublishers.setText("Listar Editoras");
+        jMenuItem_ListPublishers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ListPublishersActionPerformed(evt);
+            }
+        });
+        jMenu_List.add(jMenuItem_ListPublishers);
+
+        jMenuItem_ListWithCustomParameters.setText("Listar Livros com Autores e Editoras Relacionados");
+        jMenuItem_ListWithCustomParameters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ListWithCustomParametersActionPerformed(evt);
+            }
+        });
+        jMenu_List.add(jMenuItem_ListWithCustomParameters);
+
+        jMenuBar.add(jMenu_List);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -38,13 +114,109 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 577, Short.MAX_VALUE)
         );
-
-        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem_InsertBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_InsertBooksActionPerformed
+        InsertBook insertBook = new InsertBook();
+        this.dispose();
+        insertBook.setVisible(true);
+
+
+        insertBook.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_InsertBooksActionPerformed
+
+    private void jMenuItem_InsertAuthorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_InsertAuthorsActionPerformed
+        InsertAuthor insertAuthor = new InsertAuthor();
+        this.dispose();
+        insertAuthor.setVisible(true);
+
+
+        insertAuthor.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_InsertAuthorsActionPerformed
+
+    private void jMenuItem_InsertPublishersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_InsertPublishersActionPerformed
+        InsertPublisher insertPublisher = new InsertPublisher();
+        this.dispose();
+        insertPublisher.setVisible(true);
+
+
+        insertPublisher.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_InsertPublishersActionPerformed
+
+    private void jMenuItem_ListBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ListBooksActionPerformed
+        ListBooks listBooks = new ListBooks();
+        this.dispose();
+        listBooks.setVisible(true);
+
+
+        listBooks.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_ListBooksActionPerformed
+
+    private void jMenuItem_ListAuthorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ListAuthorsActionPerformed
+        ListAuthors listAuthors = new ListAuthors();
+        this.dispose();
+        listAuthors.setVisible(true);
+
+
+        listAuthors.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_ListAuthorsActionPerformed
+
+    private void jMenuItem_ListPublishersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ListPublishersActionPerformed
+        ListPublishers listPublihers = new ListPublishers();
+        this.dispose();
+        listPublihers.setVisible(true);
+
+
+        listPublihers.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_ListPublishersActionPerformed
+
+    private void jMenuItem_ListWithCustomParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ListWithCustomParametersActionPerformed
+        ListWithCustomFilter listWithCustomFilter = new ListWithCustomFilter();
+        this.dispose();
+        listWithCustomFilter.setVisible(true);
+
+
+        listWithCustomFilter.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                Menu.this.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jMenuItem_ListWithCustomParametersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,9 +244,6 @@ public class Menu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -85,5 +254,15 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem_InsertAuthors;
+    private javax.swing.JMenuItem jMenuItem_InsertBooks;
+    private javax.swing.JMenuItem jMenuItem_InsertPublishers;
+    private javax.swing.JMenuItem jMenuItem_ListAuthors;
+    private javax.swing.JMenuItem jMenuItem_ListBooks;
+    private javax.swing.JMenuItem jMenuItem_ListPublishers;
+    private javax.swing.JMenuItem jMenuItem_ListWithCustomParameters;
+    private javax.swing.JMenu jMenu_Insert;
+    private javax.swing.JMenu jMenu_List;
     // End of variables declaration//GEN-END:variables
 }
