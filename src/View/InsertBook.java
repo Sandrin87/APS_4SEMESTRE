@@ -163,11 +163,11 @@ public class InsertBook extends javax.swing.JFrame {
             
             String titulo = txt_TituloLivro.getText();
             String isbn = txt_Isbn.getText();
-            int preco = 0;
-            int editoraId = 0;
+            double preco = 0;
+            double editoraId = 0;
             try{
                 preco = Integer.parseInt(txt_Preco.getText());
-                editoraId = Integer.parseInt(txt_editoraID.getText());
+                editoraId = Double.parseDouble(txt_editoraID.getText());
                 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "O valor informado não é válido, por favor insira um valor válido (numeros apenas).");
