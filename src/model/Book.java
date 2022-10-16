@@ -6,15 +6,16 @@ public class Book {
     private String isbn;
     private double price;
     private String publishers;
-    private String author;
 
 
-    public Book(String title, String isbn, double price, String publishers, String author){
+    public Book(String title, String isbn, double price, String publishers){
         setTitle(title);
         setIsbn(isbn);
         setPrice(price);
         setPublishers(publishers);
-        setAuthor(author);
+    }
+
+    public Book(){
     }
 
     public String getTitle() {
@@ -49,13 +50,6 @@ public class Book {
         this.publishers = publishers;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public  void  setAuthor(String author) {
-        this.author = author;
-    }
 
 
 
