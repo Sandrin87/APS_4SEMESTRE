@@ -4,8 +4,9 @@
  */
 package DAO.Interfaces;
 
-import java.util.Map;
 import model.Book;
+
+import java.util.List;
 
 /**
  *
@@ -13,13 +14,13 @@ import model.Book;
  */
 public interface IBookDao {
     
-    void insertBook(String title, String isbn, double price, int publisherId);
+    void insertBook(String title, String isbn, int publisherId, double price);
     
-    void editBook(String title, double price, int publisherId);
+    void editBook(String title, double price, int publisherId, String isbn);
     
     Book getBookById(int id);
     
-    Map<String, Book> getAllBooks();
+    List<Book> getAllBooks();
     
     void deleteBook(int id);
 }
