@@ -11,8 +11,6 @@ import model.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -71,18 +69,17 @@ public class BookDao implements IBookDao{
     }
 
     @Override
-    public List<Book> getAllBooks() {
+    public Book getBooksByTitle(String titles) {
 
-        String sql = "SELECT * FROM Books";
-
-        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM Books WHERE title = ?";
 
         try {
             PreparedStatement pst = conexao.prepareStatement(sql);
+            pst.setString(1, titles);
 
             ResultSet rs = pst.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 String title = rs.getString("title");
                 String isbn = rs.getString("isbn");
                 double price = rs.getDouble("price");
@@ -90,11 +87,11 @@ public class BookDao implements IBookDao{
 
                 Book book = new Book(title, isbn, price, publishers);
                 book.setPublisher_id(rs.getInt("publisher_id"));
-                books.add(book);
 
+                return book;
             }
 
-            return books;
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
         }

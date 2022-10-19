@@ -6,8 +6,6 @@ package DAO.Interfaces;
 
 import model.Book;
 
-import java.util.List;
-
 /**
  *
  * @author gabri
@@ -20,7 +18,7 @@ public interface IBookDao {
     
     Book getBookById(int id);
     
-    List<Book> getAllBooks();
+    Book getBooksByTitle(String title);
     
     void deleteBook(int id);
 }
