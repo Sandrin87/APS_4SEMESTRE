@@ -18,6 +18,10 @@ import java.sql.ResultSet;
  */
 public class BookDao implements IBookDao{
     Connection conexao = ConectionDB.conector();
+
+    public BookDao() throws Exception {
+    }
+
     @Override
     public void insertBook(String title, String isbn, int publisherId, double price) {
 

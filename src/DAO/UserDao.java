@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 
 public class UserDao implements IUserDao {
     Connection conexao = ConectionDB.conector();
+
+    public UserDao() throws Exception {
+    }
+
     @Override
     public void logar(String name, String password) {
 

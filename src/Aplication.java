@@ -4,7 +4,7 @@ import DAO.UserDao;
 public class Aplication {
 
     private static UserDao userDao;
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
 
         BookDao dao = new BookDao();
         UserDao userDao = new UserDao();
