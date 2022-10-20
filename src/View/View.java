@@ -17,6 +17,8 @@ import model.Publisher;
 public interface View {
     public Author getAddAuthor();
     
+    public Author getAuthorSelected();
+    
     public Author getListAuthors();
     
     public Boolean getEditAuthors();
@@ -48,6 +50,8 @@ public interface View {
     public Publisher getAddPublisher();
     
     public String getListPublishers();
+    
+    public Publisher getPublisherSelected();
     
     public void getEditPublishers();
     

@@ -4,6 +4,7 @@
  */
 package DAO.Interfaces;
 
+import java.util.List;
 import java.util.Map;
 import model.Author;
 
@@ -19,7 +20,7 @@ public interface IAuthorDao {
     
     Author getAuthorById(int id);
     
-    Map<Integer, Author> getAllAuthors();
+    List<Author> getAllAuthors();
     
     void deleteBook(int id);
 }
