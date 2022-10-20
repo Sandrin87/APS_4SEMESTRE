@@ -1,27 +1,27 @@
 package model;
 
 public class Book {
+
     private String title;
     private String isbn;
     private double price;
-    private int publisher_id;
+    private String publishers;
+    private String author;
 
-    public Book(String title, String isbn, double price, int publishers) {
-        this.title = title;
-        this.isbn = isbn;
-        this.price = price;
-        this.publisher_id = publishers;
+
+    public Book(String title, String isbn, double price, String publishers, String author){
+        setTitle(title);
+        setIsbn(isbn);
+        setPrice(price);
+        setPublishers(publishers);
+        setAuthor(author);
     }
-
-    public Book(){
-    }
-
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public  void setTitle(String title) {
         this.title = title;
     }
 
@@ -29,7 +29,7 @@ public class Book {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public  void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -37,15 +37,29 @@ public class Book {
         return price;
     }
 
-    public void setPrice(double price) {
+    public  void setPrice(double price) {
         this.price = price;
     }
 
-    public int getPublisher_id() {
-        return publisher_id;
+    public String getPublishers() {
+        return publishers;
     }
 
-    public void setPublisher_id(int publisher_id) {
-        this.publisher_id = publisher_id;
+    public void setPublishers(String publishers) {
+        this.publishers = publishers;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public  void  setAuthor(String author) {
+        this.author = author;
+    }
+
+
+
+
+
+
 }

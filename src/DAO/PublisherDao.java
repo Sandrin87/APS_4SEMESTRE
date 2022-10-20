@@ -6,7 +6,7 @@ package DAO;
 
 import DAO.Interfaces.IPublisherDao;
 import java.util.Map;
-import model.Publishers;
+import model.Publisher;
 
 /**
  *
@@ -25,12 +25,12 @@ public class PublisherDao implements IPublisherDao{
     }
 
     @Override
-    public Publishers getPublisherById(int id) {
+    public Publisher getPublisherById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Map<Integer, Publishers> getAllPublishers() {
+    public Map<Integer, Publisher> getAllPublishers() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
