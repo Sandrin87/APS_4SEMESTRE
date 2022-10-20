@@ -1,12 +1,12 @@
 package model;
 
-public class Publishers {
+public class Publisher {
 
     private String name;
     private String url;
 
 
-    public Publishers(String name, String url) {
+    public Publisher(String name, String url) {
         setName(name);
         setUrl(url);
     }
