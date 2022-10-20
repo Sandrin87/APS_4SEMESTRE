@@ -1,19 +1,23 @@
 package model;
 
+import java.util.List;
+
+
+
 public class Book {
 
     private String title;
-    private String isbn;
+    private Integer isbn;
     private double price;
-    private String publishers;
-    private String author;
+    private Publisher publishers;
+    private List<Author> author;
 
 
-    public Book(String title, String isbn, double price, String publishers, String author){
+    public Book(String title, int isbn, Publisher publisher, List<Author> author, double price){
         setTitle(title);
         setIsbn(isbn);
         setPrice(price);
-        setPublishers(publishers);
+        setPublishers(publisher);
         setAuthor(author);
     }
 
@@ -25,11 +29,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getIsbn() {
+    public Integer getIsbn() {
         return isbn;
     }
 
-    public  void setIsbn(String isbn) {
+    public  void setIsbn(Integer isbn) {
         this.isbn = isbn;
     }
 
@@ -41,19 +45,19 @@ public class Book {
         this.price = price;
     }
 
-    public String getPublishers() {
+    public Publisher getPublishers() {
         return publishers;
     }
 
-    public void setPublishers(String publishers) {
+    public void setPublishers(Publisher publishers) {
         this.publishers = publishers;
     }
 
-    public String getAuthor() {
+    public List<Author> getAuthor() {
         return author;
     }
 
-    public  void  setAuthor(String author) {
+    public  void  setAuthor(List<Author> author) {
         this.author = author;
     }
 

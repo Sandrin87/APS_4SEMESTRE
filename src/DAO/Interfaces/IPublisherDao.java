@@ -5,7 +5,7 @@
 package DAO.Interfaces;
 
 import java.util.Map;
-import model.Publishers;
+import model.Publisher;
 
 /**
  *
@@ -17,9 +17,9 @@ public interface IPublisherDao {
     
     void editPublisher(String name, String url);
     
-    Publishers getPublisherById(int id);
+    Publisher getPublisherById(int id);
     
-    Map<Integer, Publishers> getAllPublishers();
+    Map<Integer, Publisher> getAllPublishers();
     
     void deletePublisher(int id);
 }
