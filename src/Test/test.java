@@ -4,6 +4,15 @@
  */
 package Test;
 
+import Controller.Controller;
+import DAO.AuthorDao;
+import DAO.BookDao;
+import DAO.Interfaces.IAuthorDao;
+import DAO.Interfaces.IBookDao;
+import DAO.Interfaces.IPublisherDao;
+import DAO.PublisherDao;
+import View.Janela;
+
 /**
  *
  * @author gabri
@@ -14,7 +23,16 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Janela j = new Janela();
+                j.setVisible(true);
+                    IAuthorDao authorDao = new AuthorDao();
+                    IBookDao bookDao = new BookDao();
+                    IPublisherDao publisherDao = new PublisherDao();
+                new Controller(authorDao, bookDao, publisherDao, j).init();
+            }
+        });
     }
     
 }
