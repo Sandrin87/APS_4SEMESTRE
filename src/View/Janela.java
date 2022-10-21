@@ -4,12 +4,13 @@
  */
 package View;
 
-import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.JOptionPane;
 import model.Author;
 import model.Book;
 import model.Publisher;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  *
@@ -753,8 +754,9 @@ public class Janela extends javax.swing.JFrame implements View{
     public Publisher getAddPublisher() {
         String publisherName = txt_NomeEditora.getText();
         String url = txt_SiteEditora.getText();
+        int id = 1;
         
-        return new Publisher(publisherName, url);
+        return new Publisher(publisherName, url, id);
     }
 
     @Override
@@ -803,7 +805,7 @@ public class Janela extends javax.swing.JFrame implements View{
             txt_isbn.setText("");
             txt_Preco.setText("");
        }
-       return new Book(titulo, isbn, publisher, authors, price);
+       return new Book();
     }
 
     @Override

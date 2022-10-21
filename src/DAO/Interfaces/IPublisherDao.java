@@ -4,8 +4,10 @@
  */
 package DAO.Interfaces;
 
-import java.util.Map;
 import model.Publisher;
+
+import java.sql.SQLException;
+import java.util.Map;
 
 /**
  *
@@ -15,9 +17,10 @@ public interface IPublisherDao {
     
     void insertPublisher(String name, String url);
     
-    void editPublisher(String name, String url);
+    void editPublisher(String name, String url, int publisher_id) throws SQLException;
+
     
-    Publisher getPublisherById(int id);
+    Publisher getPublisherById(int id) throws SQLException;
     
     Map<Integer, Publisher> getAllPublishers();
     

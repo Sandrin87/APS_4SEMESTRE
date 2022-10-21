@@ -92,6 +92,8 @@ public class BookDao implements IBookDao{
                 Book book = new Book(title, isbn, price, publishers);
                 book.setPublisher_id(rs.getInt("publisher_id"));
 
+                System.out.println(book);
+
                 return book;
             }
 
