@@ -10,6 +10,7 @@ import DAO.Interfaces.IPublisherDao;
 import View.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import model.Author;
 
@@ -86,9 +87,11 @@ public class Controller {
     
     class ActionInsertBook implements ActionListener{
 
+        public static List<Author> authors = new ArrayList<>();
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            //todo
         }
         
     }
@@ -139,10 +142,10 @@ public class Controller {
     }
     
     class ActionAddExistentAuthorsToListActionListner implements ActionListener{
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.get
+            ActionInsertBook.authors.add(view.getAuthorSelected());
         }
         
     }

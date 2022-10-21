@@ -5,6 +5,7 @@
 package DAO;
 
 import DAO.Interfaces.IAuthorDao;
+import java.util.List;
 import java.util.Map;
 import model.Author;
 
@@ -30,7 +31,7 @@ public class AuthorDao implements IAuthorDao {
     }
 
     @Override
-    public Map<Integer, Author> getAllAuthors() {
+    public List<Author> getAllAuthors() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
