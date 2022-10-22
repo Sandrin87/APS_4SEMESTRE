@@ -28,8 +28,18 @@ public class test {
                 Janela j = new Janela();
                 j.setVisible(true);
                     IAuthorDao authorDao = new AuthorDao();
-                    IBookDao bookDao = new BookDao();
-                    IPublisherDao publisherDao = new PublisherDao();
+                IBookDao bookDao = null;
+                try {
+                    bookDao = new BookDao();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                IPublisherDao publisherDao = null;
+                try {
+                    publisherDao = new PublisherDao();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 new Controller(authorDao, bookDao, publisherDao, j).init();
             }
         });

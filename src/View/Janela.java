@@ -768,6 +768,11 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
+    public Author getAuthorSelected() {
+        return null;
+    }
+
+    @Override
     public Author getListAuthors() {
         String name = txt_NomeAutorBusca.getText();
         String fName = txt_SobrenomeAutorBusca.getText();
@@ -816,5 +821,10 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public String getListPublishers() {
         return txt_NomeEditora.getText();
+    }
+
+    @Override
+    public Publisher getPublisherSelected() {
+        return null;
     }
 }
