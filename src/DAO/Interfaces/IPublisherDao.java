@@ -7,7 +7,7 @@ package DAO.Interfaces;
 import model.Publisher;
 
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 
 /**
  *
@@ -22,7 +22,7 @@ public interface IPublisherDao {
     
     Publisher getPublisherById(int id) throws SQLException;
     
-    Map<Integer, Publisher> getAllPublishers();
+    List<Publisher> getAllPublishers() throws Exception;
     
     void deletePublisher(int id);
 }

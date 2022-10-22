@@ -11,6 +11,8 @@ import model.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -55,21 +57,48 @@ public class BookDao implements IBookDao{
             ps.setDouble(2, price);
             ps.setInt(3, publisherId);
 
-            ps.setString(4, isbn);
-            ps.execute();
-
-            System.out.println("livro editado");
+            Book book = getBookByIsbn(isbn);
+            if(book != null){
+                ps.setString(4, book.getIsbn());
+                ps.execute();
+                System.out.println("livro editado");
+            }
 
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     @Override
-    public Book getBookById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Book getBookByIsbn(String isbn) {
+        String sql = "SELECT * FROM Books WHERE isbn = ?";
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, isbn);
+
+            ResultSet rs = pstm.executeQuery();
+
+            Book book = null;
+            if(rs.next()){
+                String title = rs.getString("title");
+                String bookNumber = rs.getString("isbn");
+                Double price = rs.getDouble("price");
+                int publisher_id = rs.getInt("publisher_id");
+
+                book = new Book(title, bookNumber, price, publisher_id);
+                System.out.println("foi encontrado o livro com o isbn: " + isbn);
+
+                return book;
+
+            } else {
+                System.out.println("Não foi encontrado um livro com o isbn: " + isbn);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -102,6 +131,41 @@ public class BookDao implements IBookDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Book> getAllBooks() throws Exception {
+        String sql = "SELECT * FROM Books";
+
+        List<Book> bookList = new ArrayList<>();
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()){
+                String title = rs.getString("title");
+                String isbn = rs.getString("isbn");
+                Double price = rs.getDouble("price");
+                int publisherId = rs.getInt("publisher_id");
+
+                Book book = new Book(title, isbn, price, publisherId);
+                bookList.add(book);
+            }
+
+            System.out.println("Livros recuperados!");
+
+            for(Book book : bookList){
+                System.out.println(book.getTitle() + " " +
+                        book.getIsbn() + " " +
+                        book.getPrice() + " " +
+                        book.getPublisher_id());
+            }
+            return bookList;
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override

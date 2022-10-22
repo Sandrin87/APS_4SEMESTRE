@@ -756,7 +756,7 @@ public class Janela extends javax.swing.JFrame implements View{
         String url = txt_SiteEditora.getText();
         int id = 1;
         
-        return new Publisher(publisherName, url, id);
+        return new Publisher(id, publisherName, url);
     }
 
     @Override

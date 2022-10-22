@@ -12,7 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -71,13 +72,13 @@ public class PublisherDao implements IPublisherDao{
                 String url = rs.getString("url");
                 int publisherP = rs.getInt("publisher_id");
 
-                publisher = new Publisher(name, url, publisherP);
+                publisher = new Publisher(publisherP, name, url);
                 publisher.setPublisher_id(rs.getInt("publisher_id"));
 
-                System.out.println("Foi encontrado um Editora com o id " + publisher_id);
+                System.out.println("Foi encontrado uma Editora com o id " + publisher_id);
                 return publisher;
             } else {
-                System.out.println("Nao foi encontrado um Editora com o id " + publisher_id);
+                System.out.println("Nao foi encontrado uma Editora com o id " + publisher_id);
             }
 
         } catch (Exception e) {
@@ -87,8 +88,34 @@ public class PublisherDao implements IPublisherDao{
     }
 
     @Override
-    public Map<Integer, Publisher> getAllPublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Publisher> getAllPublishers() throws Exception {
+        String sql = "SELECT * FROM Publishers";
+
+        List<Publisher> publisherList = new ArrayList<>();
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+
+            while(rs.next()){
+                int publisherId = rs.getInt("publisher_id");
+                String name = rs.getString("name");
+                String url = rs.getString("url");
+
+                Publisher publisher = new Publisher(publisherId, name, url);
+                publisherList.add(publisher);
+            }
+
+            System.out.println("Publishers!");
+
+            for(Publisher publisher : publisherList){
+                System.out.println(publisher.getPublisher_id() + " " + publisher.getName() + " " + publisher.getUrl() );
+            }
+            return publisherList;
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override

@@ -27,7 +27,12 @@ public class test {
             public void run() {
                 Janela j = new Janela();
                 j.setVisible(true);
-                    IAuthorDao authorDao = new AuthorDao();
+                IAuthorDao authorDao = null;
+                try {
+                    authorDao = new AuthorDao();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 IBookDao bookDao = null;
                 try {
                     bookDao = new BookDao();
