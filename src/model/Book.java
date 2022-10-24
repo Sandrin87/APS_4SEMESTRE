@@ -1,39 +1,36 @@
 package model;
 
-import java.util.List;
-
-
-
 public class Book {
 
     private String title;
-    private Integer isbn;
+    private String isbn;
     private double price;
-    private Publisher publishers;
-    private List<Author> author;
+    private int publisher_id;
 
+    public Book(String title, String isbn, double price, int publisher_id) {
+        this.title = title;
+        this.isbn = isbn;
+        this.price = price;
+        this.publisher_id = publisher_id;
+    }
 
-    public Book(String title, int isbn, Publisher publisher, List<Author> author, double price){
-        setTitle(title);
-        setIsbn(isbn);
-        setPrice(price);
-        setPublishers(publisher);
-        setAuthor(author);
+    public Book(){
+
     }
 
     public String getTitle() {
         return title;
     }
 
-    public  void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public Integer getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public  void setIsbn(Integer isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -41,29 +38,15 @@ public class Book {
         return price;
     }
 
-    public  void setPrice(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Publisher getPublishers() {
-        return publishers;
+    public int getPublisher_id() {
+        return publisher_id;
     }
 
-    public void setPublishers(Publisher publishers) {
-        this.publishers = publishers;
+    public void setPublisher_id(int publisher_id) {
+        this.publisher_id = publisher_id;
     }
-
-    public List<Author> getAuthor() {
-        return author;
-    }
-
-    public  void  setAuthor(List<Author> author) {
-        this.author = author;
-    }
-
-
-
-
-
-
 }

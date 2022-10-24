@@ -4,9 +4,9 @@
  */
 package DAO.Interfaces;
 
-import java.util.List;
-import java.util.Map;
 import model.Author;
+
+import java.util.List;
 
 /**
  *
@@ -16,11 +16,11 @@ public interface IAuthorDao {
     
     void insertAuthor(String name, String fName);
     
-    void editAuthor(String name, String fName);
+    void editAuthor(String name, String fName, int id) throws Exception;
     
     Author getAuthorById(int id);
     
-    List<Author> getAllAuthors();
+    List<Author> getAllAuthors() throws Exception;
     
     void deleteBook(int id);
 }
