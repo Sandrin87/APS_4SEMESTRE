@@ -15,7 +15,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public void logar(String name, String password) {
+    public String logar(String name, String password) {
 
         String sql = "SELECT * FROM Usuario WHERE name=? AND password=?";
 
@@ -27,21 +27,16 @@ public class UserDao implements IUserDao {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                String perfil = rs.getString(4);
-                if(perfil.equals("admin")){
-                    JOptionPane.showMessageDialog(null, "Aqui telas administradores");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Aqui telas Usuarios");
-                }
-
                 JOptionPane.showMessageDialog(null, "Usuario Logado");
-                conexao.close();
+                return "Sucesso";
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido");
+                return "falha";
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 
         }
+ return "null";
     }
 }
