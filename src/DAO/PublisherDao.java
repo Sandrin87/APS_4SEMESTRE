@@ -5,9 +5,15 @@
 package DAO;
 
 import DAO.Interfaces.IPublisherDao;
-import java.util.List;
-import java.util.Map;
+import database.ConectionDB;
 import model.Publisher;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,24 +21,101 @@ import model.Publisher;
  */
 public class PublisherDao implements IPublisherDao{
 
+    Connection conexao = ConectionDB.conector();
+
+    public PublisherDao() throws Exception {
+    }
+
     @Override
     public void insertPublisher(String name, String url) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void editPublisher(String name, String url) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void editPublisher(String name, String url, int publisher_id) throws SQLException {
+        String sql = "UPDATE Publishers SET name = ?, url = ? " +
+                "WHERE publisher_id = ?";
+
+        try {
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, url);
+
+            Publisher p = getPublisherById(publisher_id);
+            if(p != null){
+                ps.setInt(3, p.getPublisher_id());
+                ps.execute();
+                System.out.println("A Editora " + name + " foi alterada!");
+            }
+
+        } catch (SQLException e){
+            throw new SQLException("Erro");
+        }
+
     }
 
     @Override
-    public Publisher getPublisherById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Publisher getPublisherById(int publisher_id) throws SQLException {
+        String sql = "SELECT * FROM Publishers WHERE publisher_id = ?";
+
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+            pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, publisher_id);
+
+            rs = pstm.executeQuery();
+
+            Publisher publisher = null;
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String url = rs.getString("url");
+                int publisherP = rs.getInt("publisher_id");
+
+                publisher = new Publisher(publisherP, name, url);
+                publisher.setPublisher_id(rs.getInt("publisher_id"));
+
+                System.out.println("Foi encontrado uma Editora com o id " + publisher_id);
+                return publisher;
+            } else {
+                System.out.println("Nao foi encontrado uma Editora com o id " + publisher_id);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public List<Publisher> getAllPublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Publisher> getAllPublishers() throws Exception {
+        String sql = "SELECT * FROM Publishers";
+
+        List<Publisher> publisherList = new ArrayList<>();
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+
+            while(rs.next()){
+                int publisherId = rs.getInt("publisher_id");
+                String name = rs.getString("name");
+                String url = rs.getString("url");
+
+                Publisher publisher = new Publisher(publisherId, name, url);
+                publisherList.add(publisher);
+            }
+
+            System.out.println("Publishers!");
+
+            for(Publisher publisher : publisherList){
+                System.out.println(publisher.getPublisher_id() + " " + publisher.getName() + " " + publisher.getUrl() );
+            }
+            return publisherList;
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
