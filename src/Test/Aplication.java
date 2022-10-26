@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package Test;
 
 import Controller.Controller;
@@ -13,17 +9,9 @@ import DAO.Interfaces.IPublisherDao;
 import DAO.PublisherDao;
 import View.Janela;
 
-/**
- *
- * @author gabri
- */
-public class test {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-         java.awt.EventQueue.invokeLater(new Runnable() {
+public class Aplication {
+    public static void main(String args[]) throws Exception {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Janela j = new Janela();
                 j.setVisible(true);
@@ -49,5 +37,5 @@ public class test {
             }
         });
     }
-    
 }
+

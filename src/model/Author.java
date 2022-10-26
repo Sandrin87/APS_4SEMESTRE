@@ -2,9 +2,9 @@ package model;
 
 public class Author {
 
-      private int author_id;
-      private String lastName;
-      private String firstNane;
+    private int author_id;
+    private String lastName;
+    private String firstNane;
 
     public Author(int id, String lastName, String firstNane) {
         this.author_id = id;

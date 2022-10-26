@@ -1,16 +1,20 @@
 package model;
 
+import java.util.List;
+
 public class Book {
 
     private String title;
     private String isbn;
+    private List<Author> authors;
     private double price;
     private int publisher_id;
 
-    public Book(String title, String isbn, double price, int publisher_id) {
+    public Book(String title, String isbn, List<Author> authors, double price, int publisher_id) {
         this.title = title;
         this.isbn = isbn;
         this.price = price;
+        this.authors = authors;
         this.publisher_id = publisher_id;
     }
 
@@ -18,6 +22,14 @@ public class Book {
 
     }
 
+    public List<Author> getAuthors() {
+        return authors;
+    }
+    
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+    
     public String getTitle() {
         return title;
     }

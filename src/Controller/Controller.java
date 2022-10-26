@@ -39,6 +39,7 @@ public class Controller {
         
         view.addActionListnerBook(new ActionInsertAuthor());
         view.addExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
+        view.removeExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
         view.editActionListnerBook(new ActionEditBook());
         view.excludeActionListnerBook(new ActionExcludeBook());
         
@@ -146,6 +147,17 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             ActionInsertBook.authors.add(view.getAuthorSelected());
+        }
+        
+    }
+    
+    class ActionRemoveExistentAuthorsToListActionListner implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int index = ActionInsertBook.authors.size();
+            ActionInsertBook.authors.remove(index);
+            //atualiza texto tbm
         }
         
     }

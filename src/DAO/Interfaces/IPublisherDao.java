@@ -18,9 +18,10 @@ public interface IPublisherDao {
     void insertPublisher(String name, String url);
     
     void editPublisher(String name, String url, int publisher_id) throws SQLException;
-
     
     Publisher getPublisherById(int id) throws SQLException;
+    
+    Publisher getPublisherByName(String name);
     
     List<Publisher> getAllPublishers() throws Exception;
     
