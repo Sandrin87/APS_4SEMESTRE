@@ -20,7 +20,7 @@ public interface View {
     
     public Author getAuthorSelected();
     
-    public Author getListAuthors();
+    public Author getSearchAuthors();
     
     public Boolean getEditAuthors();
     
@@ -34,9 +34,11 @@ public interface View {
     
     public void addExistentAuthorsToListActionListner(ActionListener al);
     
+    public void removeExistentAuthorsToListActionListner(ActionListener al);
+    
     public Book getAddBook(List<Author> authors, Publisher publisher);
     
-    public String getListBooks();
+    public String getSearchBooks();
     
     public void getEditBooks();
     

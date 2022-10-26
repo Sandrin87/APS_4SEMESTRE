@@ -92,6 +92,7 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_AddNovoLivro = new javax.swing.JButton();
         txt_Preco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        btn_removeListaAutoresLivros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,28 +157,26 @@ public class Janela extends javax.swing.JFrame implements View{
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 72, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txt_SobrenomeAutorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btn_BuscarAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btn_BuscarAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btn_ExcluirAutor)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txt_NomeAutorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4)))
-                                .addGap(34, 34, 34)
-                                .addComponent(btn_EditarAutor)
-                                .addGap(8, 8, 8)))))
+                                    .addComponent(txt_NomeAutorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addComponent(btn_ExcluirAutor))
+                            .addGap(34, 34, 34)
+                            .addComponent(btn_EditarAutor)
+                            .addGap(8, 8, 8))))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -290,11 +289,11 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_ExcluirEditora)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_NomeBuscaEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13)))
+                                .addComponent(jLabel13))
+                            .addComponent(btn_ExcluirEditora))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_EditarEditora)
                         .addGap(8, 8, 8))
@@ -420,11 +419,11 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_excluirLivro)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10)))
+                                .addComponent(jLabel10))
+                            .addComponent(btn_excluirLivro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_editarLivro)
                         .addGap(8, 8, 8))
@@ -454,7 +453,6 @@ public class Janela extends javax.swing.JFrame implements View{
         jScrollPane1.setViewportView(txtArea_AutoresDoLivro);
 
         cbo_autoresExistentes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbo_autoresExistentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Autores do livro:");
@@ -463,7 +461,6 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_addListaAutoresLivros.setText("Adicionar");
 
         cbo_EditorasExistentes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        cbo_EditorasExistentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Preço R$:");
@@ -475,6 +472,9 @@ public class Janela extends javax.swing.JFrame implements View{
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel12.setText("Editora:");
+
+        btn_removeListaAutoresLivros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_removeListaAutoresLivros.setText("Remover");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -508,8 +508,13 @@ public class Janela extends javax.swing.JFrame implements View{
                                     .addComponent(jLabel11)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(47, 47, 47)
-                .addComponent(btn_AddNovoLivro)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btn_AddNovoLivro))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
         jPanel9Layout.setVerticalGroup(
@@ -527,7 +532,8 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_autoresExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(btn_addListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_addListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -623,8 +629,9 @@ public class Janela extends javax.swing.JFrame implements View{
     private javax.swing.JButton btn_buscarLivro;
     private javax.swing.JButton btn_editarLivro;
     private javax.swing.JButton btn_excluirLivro;
-    public javax.swing.JComboBox<String> cbo_EditorasExistentes;
-    public javax.swing.JComboBox<String> cbo_autoresExistentes;
+    private javax.swing.JButton btn_removeListaAutoresLivros;
+    public javax.swing.JComboBox<Object> cbo_EditorasExistentes;
+    public javax.swing.JComboBox<Object> cbo_autoresExistentes;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -773,7 +780,7 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public Author getListAuthors() {
+    public Author getSearchAuthors() {
         String name = txt_NomeAutorBusca.getText();
         String fName = txt_SobrenomeAutorBusca.getText();
         
@@ -803,18 +810,18 @@ public class Janela extends javax.swing.JFrame implements View{
                     }
         	}
         } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         finally{
             txt_titulo.setText("");
             txt_isbn.setText("");
             txt_Preco.setText("");
        }
-       return new Book();
+       return new Book(titulo, titulo, authors, price, publisher.getPublisher_id());
     }
 
     @Override
-    public String getListBooks() {
+    public String getSearchBooks() {
         return txt_titulo.getText();
     }
 
@@ -826,5 +833,10 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public Publisher getPublisherSelected() {
         return null;
+    }
+
+    @Override
+    public void removeExistentAuthorsToListActionListner(ActionListener al) {
+        btn_removeListaAutoresLivros.addActionListener(al);
     }
 }
