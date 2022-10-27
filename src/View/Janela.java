@@ -4,6 +4,8 @@
  */
 package View;
 
+import DAO.Interfaces.IAuthorDao;
+import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
@@ -21,7 +23,18 @@ public class Janela extends javax.swing.JFrame implements View{
     /**
      * Creates new form View
      */
-    public Janela() {
+    public Janela(IAuthorDao aDao, IPublisherDao pDao) throws Exception {
+        initComponents();
+        
+        for(Author a : aDao.getAllAuthors()){
+            cbo_autoresExistentes.addItem(a);
+        }
+        
+        for(Publisher p : pDao.getAllPublishers()){
+            cbo_EditorasExistentes.addItem(p);
+        }
+    }
+    public Janela(){
         initComponents();
     }
 

@@ -61,4 +61,9 @@ public class Book {
     public void setPublisher_id(int publisher_id) {
         this.publisher_id = publisher_id;
     }
+
+    @Override
+    public String toString() {
+        return getTitle(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
 }

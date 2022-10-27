@@ -106,7 +106,7 @@ public class AuthorDao implements IAuthorDao {
 
             for(Author author : authorsList){
                 System.out.println(author.getAuthor_id() +
-                        " " + author.getFirstNane() +
+                        " " + author.getFirstName() +
                         " " + author.getLastName());
             }
             return authorsList;

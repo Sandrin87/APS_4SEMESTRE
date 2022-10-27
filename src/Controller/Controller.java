@@ -54,7 +54,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Author authorToInsert = view.getAddAuthor();
             
-            authorDao.insertAuthor(authorToInsert.getFirstNane(), authorToInsert.getLastName());
+            authorDao.insertAuthor(authorToInsert.getFirstName(), authorToInsert.getLastName());
         }
         
     }

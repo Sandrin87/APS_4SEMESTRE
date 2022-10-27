@@ -34,11 +34,17 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public String getFirstNane() {
+    public String getFirstName() {
         return firstNane;
     }
 
     public void setFirstNane(String firstNane) {
         this.firstNane = firstNane;
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() +" "+ getLastName();
+    }
+    
 }
