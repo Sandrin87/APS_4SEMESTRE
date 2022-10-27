@@ -22,9 +22,9 @@ public interface View {
     
     public Author getSearchAuthors();
     
-    public Boolean getEditAuthors();
+    public Author getEditAuthors();
     
-    public Boolean getDeleteAuthor();
+    public int getDeleteAuthor();
     
     public void addActionListnerAuthor(ActionListener al);
     
@@ -40,9 +40,9 @@ public interface View {
     
     public String getSearchBooks();
     
-    public void getEditBooks();
+    public Book getEditBooks();
     
-    public void getDeleteBook();
+    public int getDeleteBook();
     
     public void addActionListnerBook(ActionListener al);
     
@@ -56,9 +56,9 @@ public interface View {
     
     public Publisher getPublisherSelected();
     
-    public void getEditPublishers();
+    public Publisher getEditPublishers();
     
-    public void getDeletePublishers();
+    public int getDeletePublishers();
     
     public void addActionListnerPublisher(ActionListener al);
     

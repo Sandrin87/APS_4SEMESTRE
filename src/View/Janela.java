@@ -683,12 +683,12 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public Boolean getEditAuthors() {
-         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Author getEditAuthors() {
+       return null;
     }
 
     @Override
-    public Boolean getDeleteAuthor() {
+    public int getDeleteAuthor() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -708,12 +708,12 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public void getEditBooks() {
+    public Book getEditBooks() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void getDeleteBook() {
+    public int getDeleteBook() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -733,12 +733,12 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public void getEditPublishers() {
+    public Publisher getEditPublishers() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void getDeletePublishers() {
+    public int getDeletePublishers() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

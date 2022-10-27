@@ -11,8 +11,16 @@ public class ConectionDB {
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/livraria";
         String user = "root";
-        String password = "";
+        String password;
 
+        //conexão vitória:
+        //password = "";
+        
+        //conexão sandrin
+        password = "Admin@1234";
+        
+        
+        
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
