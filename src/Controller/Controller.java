@@ -10,9 +10,14 @@ import DAO.Interfaces.IPublisherDao;
 import View.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Author;
+import model.Book;
+import model.Publisher;
 
 /**
  *
@@ -25,6 +30,8 @@ public class Controller {
     
     View view;
     
+    List<Author> authors = new ArrayList<>();
+    
     public Controller(IAuthorDao _authorDao, IBookDao _bookDao, IPublisherDao _publisherDao, View _view){
         this.authorDao = _authorDao;
         this.bookDao = _bookDao;
@@ -32,14 +39,16 @@ public class Controller {
         this.view = _view;
     }
     
-    public void init(){
+    public void init() throws Exception{
+        view.initVisualComponents(bookDao.getAllBooks(), publisherDao.getAllPublishers(), authorDao.getAllAuthors());
+        
         view.addActionListnerAuthor(new ActionInsertAuthor());
         view.editActionListnerAuthor(new ActionEditAuthor());
         view.excludeActionListnerAuthor(new ActionExcludeAuthor());
         
         view.addActionListnerBook(new ActionInsertAuthor());
         view.addExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
-        view.removeExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
+        view.removeExistentAuthorsToListActionListner(new ActionRemoveExistentAuthorsToListActionListner());
         view.editActionListnerBook(new ActionEditBook());
         view.excludeActionListnerBook(new ActionExcludeBook());
         
@@ -54,7 +63,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Author authorToInsert = view.getAddAuthor();
             
-            authorDao.insertAuthor(authorToInsert.getFirstNane(), authorToInsert.getLastName());
+            authorDao.insertAuthor(authorToInsert.getFirstName(), authorToInsert.getLastName());
         }
         
     }
@@ -88,11 +97,12 @@ public class Controller {
     
     class ActionInsertBook implements ActionListener{
 
-        public static List<Author> authors = new ArrayList<>();
-        
         @Override
         public void actionPerformed(ActionEvent e) {
-            //todo
+            Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
+            
+            bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice());
+            authors = new ArrayList<>();
         }
         
     }
@@ -128,7 +138,15 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            Publisher p = view.getEditPublishers();
+            if(p != null){
+                try {
+                    publisherDao.editPublisher(p.getName(), p.getUrl(), p.getPublisher_id());
+                    view.refreshVisualComponents(null,publisherDao.getAllPublishers(), null);
+                } catch (Exception ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         
     }
@@ -146,7 +164,8 @@ public class Controller {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            ActionInsertBook.authors.add(view.getAuthorSelected());
+            authors.add(view.getAuthorSelected());
+            view.atualizaTextoListaAutores(authors);
         }
         
     }
@@ -155,9 +174,11 @@ public class Controller {
         
         @Override
         public void actionPerformed(ActionEvent e) {
-            int index = ActionInsertBook.authors.size();
-            ActionInsertBook.authors.remove(index);
-            //atualiza texto tbm
+            
+            if(authors.size() > 0)
+                authors.remove((authors.size()-1));
+            
+            view.atualizaTextoListaAutores(authors);
         }
         
     }

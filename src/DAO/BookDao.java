@@ -86,7 +86,7 @@ public class BookDao implements IBookDao{
                 Double price = rs.getDouble("price");
                 int publisher_id = rs.getInt("publisher_id");
 
-                book = new Book(title, bookNumber, price, publisher_id);
+                book = new Book(title, bookNumber, null, price, publisher_id);
                 System.out.println("foi encontrado o livro com o isbn: " + isbn);
 
                 return book;
@@ -118,7 +118,7 @@ public class BookDao implements IBookDao{
                 double price = rs.getDouble("price");
                 int publishers = rs.getInt("publisher_id");
 
-                Book book = new Book(title, isbn, price, publishers);
+                Book book = new Book(title, isbn, null, price, publishers);
                 book.setPublisher_id(rs.getInt("publisher_id"));
 
                 System.out.println(book);
@@ -149,7 +149,7 @@ public class BookDao implements IBookDao{
                 Double price = rs.getDouble("price");
                 int publisherId = rs.getInt("publisher_id");
 
-                Book book = new Book(title, isbn, price, publisherId);
+                Book book = new Book(title, isbn, null, price, publisherId);
                 bookList.add(book);
             }
 

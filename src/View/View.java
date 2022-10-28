@@ -4,6 +4,9 @@
  */
 package View;
 
+import DAO.Interfaces.IAuthorDao;
+import DAO.Interfaces.IBookDao;
+import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
@@ -22,9 +25,9 @@ public interface View {
     
     public Author getSearchAuthors();
     
-    public Boolean getEditAuthors();
+    public Author getEditAuthors();
     
-    public Boolean getDeleteAuthor();
+    public int getDeleteAuthor();
     
     public void addActionListnerAuthor(ActionListener al);
     
@@ -40,9 +43,9 @@ public interface View {
     
     public String getSearchBooks();
     
-    public void getEditBooks();
+    public Book getEditBooks();
     
-    public void getDeleteBook();
+    public int getDeleteBook();
     
     public void addActionListnerBook(ActionListener al);
     
@@ -56,13 +59,19 @@ public interface View {
     
     public Publisher getPublisherSelected();
     
-    public void getEditPublishers();
+    public Publisher getEditPublishers();
     
-    public void getDeletePublishers();
+    public int getDeletePublishers();
     
     public void addActionListnerPublisher(ActionListener al);
     
     public void editActionListnerPublisher(ActionListener al);
     
     public void excludeActionListnerPublisher(ActionListener al);
+
+    public void atualizaTextoListaAutores(List<Author> authors);
+
+    public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
+    
+    public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
 }

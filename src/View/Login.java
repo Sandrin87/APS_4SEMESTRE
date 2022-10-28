@@ -1,6 +1,15 @@
 package View;
 
+import DAO.AuthorDao;
+import DAO.BookDao;
+import DAO.Interfaces.IAuthorDao;
+import DAO.Interfaces.IBookDao;
+import DAO.Interfaces.IPublisherDao;
+import DAO.Interfaces.IUserDao;
+import DAO.PublisherDao;
 import DAO.UserDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -13,7 +22,10 @@ public class Login extends JFrame {
     private JPanel jpLogin;
     private JLabel warninLabel;
 
-    UserDao dao = new UserDao();
+    IUserDao dao = new UserDao();
+    IAuthorDao aDao = new AuthorDao();
+    IPublisherDao pDao = new PublisherDao();
+    IBookDao bDao = new BookDao();
     public Login() throws Exception {
         setContentPane(jpLogin);
         setTitle("Tela de Login");
@@ -31,9 +43,9 @@ public class Login extends JFrame {
             } else {
                  final var resp = dao.logar(name, pass);
                  if("Sucesso".equals(resp)){
-                     Janela principal = new Janela();
-                     principal.setVisible(true);
-                     this.dispose();
+                    Janela principal = new Janela();
+                    principal.setVisible(true);
+                    this.dispose();
                  }
             }
 
