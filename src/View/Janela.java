@@ -5,6 +5,7 @@
 package View;
 
 import DAO.Interfaces.IAuthorDao;
+import DAO.Interfaces.IBookDao;
 import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
@@ -13,6 +14,7 @@ import model.Publisher;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,17 +25,11 @@ public class Janela extends javax.swing.JFrame implements View{
     /**
      * Creates new form View
      */
-    public Janela(IAuthorDao aDao, IPublisherDao pDao) throws Exception {
-        initComponents();
-        
-        for(Author a : aDao.getAllAuthors()){
-            cbo_autoresExistentes.addItem(a);
-        }
-        
-        for(Publisher p : pDao.getAllPublishers()){
-            cbo_EditorasExistentes.addItem(p);
-        }
-    }
+    
+    private DefaultTableModel tbModelAuthors;
+    private DefaultTableModel tbModelPublishers;
+    private DefaultTableModel tbModelBooks;
+    
     public Janela(){
         initComponents();
     }
@@ -52,7 +48,7 @@ public class Janela extends javax.swing.JFrame implements View{
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        table_Autor = new javax.swing.JTable();
+        jtable_Autor = new javax.swing.JTable();
         txt_SobrenomeAutorBusca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -69,7 +65,7 @@ public class Janela extends javax.swing.JFrame implements View{
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         table_Editoras = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jtable_Editoras = new javax.swing.JTable();
         btn_EditarEditora = new javax.swing.JButton();
         btn_BuscarEditora = new javax.swing.JButton();
         btn_ExcluirEditora = new javax.swing.JButton();
@@ -84,7 +80,7 @@ public class Janela extends javax.swing.JFrame implements View{
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         table_Livros = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jtable_Livros = new javax.swing.JTable();
         txt_tituloLivroBuscar = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btn_buscarLivro = new javax.swing.JButton();
@@ -109,18 +105,15 @@ public class Janela extends javax.swing.JFrame implements View{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        table_Autor.setModel(new javax.swing.table.DefaultTableModel(
+        jtable_Autor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nome", "Sobrenome"
             }
         ));
-        jScrollPane2.setViewportView(table_Autor);
+        jScrollPane2.setViewportView(jtable_Autor);
 
         txt_SobrenomeAutorBusca.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -246,18 +239,15 @@ public class Janela extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Autores", jTabbedPane3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jtable_Editoras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nome", "URL"
             }
         ));
-        table_Editoras.setViewportView(jTable4);
+        table_Editoras.setViewportView(jtable_Editoras);
 
         btn_EditarEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_EditarEditora.setText("Editar");
@@ -374,18 +364,15 @@ public class Janela extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Editoras", jTabbedPane4);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jtable_Livros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ISBN", "Titulo", "Preço R$"
             }
         ));
-        table_Livros.setViewportView(jTable3);
+        table_Livros.setViewportView(jtable_Livros);
 
         txt_tituloLivroBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -671,9 +658,9 @@ public class Janela extends javax.swing.JFrame implements View{
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable table_Autor;
+    private javax.swing.JTable jtable_Autor;
+    private javax.swing.JTable jtable_Editoras;
+    private javax.swing.JTable jtable_Livros;
     private javax.swing.JScrollPane table_Editoras;
     private javax.swing.JScrollPane table_Livros;
     private javax.swing.JTextArea txtArea_AutoresDoLivro;
@@ -690,6 +677,83 @@ public class Janela extends javax.swing.JFrame implements View{
     private javax.swing.JTextField txt_tituloLivroBuscar;
     // End of variables declaration//GEN-END:variables
 
+    private void refreshTableBooks(List<Book> books) {
+        tbModelBooks.setRowCount(0);
+        tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
+        
+        for(Book b : books){
+            String tbDataBooks[] = {b.getIsbn(), b.getTitle(), String.valueOf(b.getPrice())};
+            tbModelBooks.addRow(tbDataBooks);
+        } 
+    }
+
+    private void refreshTablePublisher(List<Publisher> publishers) {
+        cbo_EditorasExistentes.removeAllItems();
+        tbModelPublishers.setRowCount(0);
+        
+        tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
+        
+        for(Publisher p : publishers){
+            String tbDataPublishers[] = {String.valueOf(p.getPublisher_id()), p.getName(), p.getUrl()};
+            tbModelPublishers.addRow(tbDataPublishers);
+
+            cbo_EditorasExistentes.addItem(p);
+        }
+    }
+
+    private void refreshTableAuthors(List<Author> authors) {
+        cbo_autoresExistentes.removeAllItems();
+        tbModelAuthors.setRowCount(0);
+        
+        tbModelAuthors = (DefaultTableModel) jtable_Autor.getModel();
+        
+        for(Author a : authors){
+            String tbDataAuthors[] = {String.valueOf(a.getAuthor_id()), a.getFirstName(), a.getLastName()};
+            tbModelAuthors.addRow(tbDataAuthors);
+
+            cbo_autoresExistentes.addItem(a);
+        }
+        
+    }
+    
+    @Override
+    public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
+        tbModelAuthors = (DefaultTableModel) jtable_Autor.getModel();
+        tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
+        tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
+        
+        for(Author a : authors){
+            String tbDataAuthors[] = {String.valueOf(a.getAuthor_id()), a.getFirstName(), a.getLastName()};
+            tbModelAuthors.addRow(tbDataAuthors);
+
+            cbo_autoresExistentes.addItem(a);
+        }
+        
+        for(Publisher p : publishers){
+            String tbDataPublishers[] = {String.valueOf(p.getPublisher_id()), p.getName(), p.getUrl()};
+            tbModelPublishers.addRow(tbDataPublishers);
+
+            cbo_EditorasExistentes.addItem(p);
+        }
+        
+        for(Book b : books){
+            String tbDataBooks[] = {b.getIsbn(), b.getTitle(), String.valueOf(b.getPrice())};
+            tbModelBooks.addRow(tbDataBooks);
+        } 
+    }
+    
+    @Override
+    public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
+        if(books != null && !books.isEmpty())
+            this.refreshTableBooks(books);
+            
+        if(publishers != null && !publishers.isEmpty())
+            this.refreshTablePublisher(publishers);
+        
+        if(authors != null && !authors.isEmpty())
+            this.refreshTableAuthors(authors);
+    }
+    
     @Override
     public void addExistentAuthorsToListActionListner(ActionListener al) {
         btn_addListaAutoresLivros.addActionListener(al);
@@ -747,7 +811,23 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Publisher getEditPublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(jtable_Editoras.getSelectionModel().isSelectionEmpty()){
+            return null;
+        }
+        
+        int Id = Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
+        String nomeAtual = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 1).toString();
+        
+        String nomeEditoraAtualizado = JOptionPane.showInputDialog("Deseja atualizar o nome da editora "+nomeAtual+" ?");
+        String urlEditoraAtualizado = JOptionPane.showInputDialog("Deseja atualizar a URL da editora "+nomeAtual+" ?");
+        
+        if(nomeEditoraAtualizado == null || nomeEditoraAtualizado.equals("") || nomeEditoraAtualizado.trim().equals(""))
+            nomeEditoraAtualizado = nomeAtual;
+        
+        if(urlEditoraAtualizado == null || urlEditoraAtualizado.equals("") || urlEditoraAtualizado.trim().equals(""))
+            urlEditoraAtualizado = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 2).toString();
+        
+        return new Publisher(Id, nomeEditoraAtualizado, urlEditoraAtualizado);
     }
 
     @Override
@@ -789,7 +869,7 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Author getAuthorSelected() {
-        return null;
+        return (Author) cbo_autoresExistentes.getSelectedItem();
     }
 
     @Override
@@ -845,11 +925,27 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Publisher getPublisherSelected() {
-        return null;
+        return (Publisher) cbo_EditorasExistentes.getSelectedItem();
     }
 
     @Override
     public void removeExistentAuthorsToListActionListner(ActionListener al) {
         btn_removeListaAutoresLivros.addActionListener(al);
     }
+
+    @Override
+    public void atualizaTextoListaAutores(List<Author> authors) {
+        String txtAtualizado = "";
+        if(!authors.isEmpty()){
+            for(Author a : authors){
+               txtAtualizado += a + "; ";
+            }
+            txtArea_AutoresDoLivro.setText(txtAtualizado);
+            txtAtualizado = "";
+        }
+        else{
+            txtArea_AutoresDoLivro.setText("A lista está Vazia...");
+        }
+    }
+
 }

@@ -34,7 +34,7 @@ public class Aplication {
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                    Janela j = new Janela(authorDao, publisherDao);
+                    Janela j = new Janela();
                     j.setVisible(true);
                     new Controller(authorDao, bookDao, publisherDao, j).init();
                 } catch (Exception ex) {
