@@ -679,48 +679,25 @@ public class Janela extends javax.swing.JFrame implements View{
 
     private void refreshTableBooks(List<Book> books) {
         tbModelBooks.setRowCount(0);
-        tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
-        
-        for(Book b : books){
-            String tbDataBooks[] = {b.getIsbn(), b.getTitle(), String.valueOf(b.getPrice())};
-            tbModelBooks.addRow(tbDataBooks);
-        } 
+        this.fillOutBooksComponents(books);
     }
 
     private void refreshTablePublisher(List<Publisher> publishers) {
         cbo_EditorasExistentes.removeAllItems();
         tbModelPublishers.setRowCount(0);
         
-        tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
-        
-        for(Publisher p : publishers){
-            String tbDataPublishers[] = {String.valueOf(p.getPublisher_id()), p.getName(), p.getUrl()};
-            tbModelPublishers.addRow(tbDataPublishers);
-
-            cbo_EditorasExistentes.addItem(p);
-        }
+        this.fillOutPublisherComponents(publishers);
     }
 
     private void refreshTableAuthors(List<Author> authors) {
         cbo_autoresExistentes.removeAllItems();
         tbModelAuthors.setRowCount(0);
         
-        tbModelAuthors = (DefaultTableModel) jtable_Autor.getModel();
-        
-        for(Author a : authors){
-            String tbDataAuthors[] = {String.valueOf(a.getAuthor_id()), a.getFirstName(), a.getLastName()};
-            tbModelAuthors.addRow(tbDataAuthors);
-
-            cbo_autoresExistentes.addItem(a);
-        }
-        
+        this.fillOutAuthorsComponents(authors);
     }
     
-    @Override
-    public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
+    private void fillOutAuthorsComponents(List<Author> authors){
         tbModelAuthors = (DefaultTableModel) jtable_Autor.getModel();
-        tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
-        tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
         
         for(Author a : authors){
             String tbDataAuthors[] = {String.valueOf(a.getAuthor_id()), a.getFirstName(), a.getLastName()};
@@ -728,6 +705,10 @@ public class Janela extends javax.swing.JFrame implements View{
 
             cbo_autoresExistentes.addItem(a);
         }
+    }
+    
+    private void fillOutPublisherComponents(List<Publisher> publishers){
+        tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
         
         for(Publisher p : publishers){
             String tbDataPublishers[] = {String.valueOf(p.getPublisher_id()), p.getName(), p.getUrl()};
@@ -735,11 +716,24 @@ public class Janela extends javax.swing.JFrame implements View{
 
             cbo_EditorasExistentes.addItem(p);
         }
+    }
+    
+    private void fillOutBooksComponents(List<Book> books){
+        tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
         
         for(Book b : books){
             String tbDataBooks[] = {b.getIsbn(), b.getTitle(), String.valueOf(b.getPrice())};
             tbModelBooks.addRow(tbDataBooks);
         } 
+    }
+    
+    @Override
+    public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
+        this.fillOutAuthorsComponents(authors);
+        
+        this.fillOutPublisherComponents(publishers);
+        
+        this.fillOutBooksComponents(books);
     }
     
     @Override
@@ -761,12 +755,33 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Author getEditAuthors() {
-       return null;
+        if(jtable_Autor.getSelectionModel().isSelectionEmpty())
+            return null;        
+        
+        int Id = Integer.valueOf(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
+        String actualFirstName = jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 1).toString();
+        String actualLastName = jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 2).toString();
+        
+        String completeActualName = actualFirstName + " " + actualLastName;
+        
+        String refreshedFirstName = JOptionPane.showInputDialog("Deseja atualizar o nome do autor "+completeActualName+" ?");
+        String refreshedLastName = JOptionPane.showInputDialog("Deseja atualizar o sobrenome do autor "+completeActualName+" ?");
+        
+        if(refreshedFirstName == null || refreshedFirstName.equals("") || refreshedFirstName.trim().equals(""))
+            refreshedFirstName = actualFirstName;
+        
+        if(refreshedLastName == null || refreshedLastName.equals("") || refreshedLastName.trim().equals(""))
+            refreshedLastName = actualLastName;
+        
+        return new Author(Id, refreshedLastName, refreshedFirstName);
     }
 
     @Override
     public int getDeleteAuthor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(jtable_Autor.getSelectionModel().isSelectionEmpty())
+            return 0;  
+        
+        return Integer.valueOf(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
     }
 
     @Override
@@ -786,12 +801,39 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Book getEditBooks() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(jtable_Livros.getSelectionModel().isSelectionEmpty())
+            return null;        
+        
+        String isbn = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString();
+        String actualBookTitle = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 1).toString();
+        String actualBookPrice = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 2).toString();
+        
+        String refreshedBookTitle = JOptionPane.showInputDialog("Deseja atualizar o titulo do livro "+actualBookTitle+" ?");
+        String refreshedBookPrice = JOptionPane.showInputDialog("Deseja atualizar o preço do livro "+actualBookTitle+" ?");
+        
+        if(refreshedBookTitle == null || refreshedBookTitle.equals("") || refreshedBookTitle.trim().equals(""))
+            refreshedBookTitle = actualBookTitle;
+        
+        if(refreshedBookPrice == null || refreshedBookPrice.equals("") || refreshedBookPrice.trim().equals(""))
+            refreshedBookPrice = actualBookPrice;
+        
+        double parsedValue = 0.0;
+        try{
+           parsedValue = Double.parseDouble(refreshedBookPrice);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Valor inserido inválido! o valor : "+ refreshedBookPrice +", não é válido e foi desconsiderado.");
+            refreshedBookPrice = actualBookPrice;
+        }
+        
+        return new Book(refreshedBookTitle, isbn, Double.parseDouble(refreshedBookPrice));
     }
 
     @Override
     public int getDeleteBook() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(jtable_Livros.getSelectionModel().isSelectionEmpty())
+            return 0;  
+        
+        return Integer.valueOf(jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString());
     }
 
     @Override
@@ -811,28 +853,30 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Publisher getEditPublishers() {
-        if(jtable_Editoras.getSelectionModel().isSelectionEmpty()){
-            return null;
-        }
+        if(jtable_Editoras.getSelectionModel().isSelectionEmpty())
+            return null;        
         
         int Id = Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
-        String nomeAtual = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 1).toString();
+        String actualName = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 1).toString();
         
-        String nomeEditoraAtualizado = JOptionPane.showInputDialog("Deseja atualizar o nome da editora "+nomeAtual+" ?");
-        String urlEditoraAtualizado = JOptionPane.showInputDialog("Deseja atualizar a URL da editora "+nomeAtual+" ?");
+        String publisherNameRefreshed = JOptionPane.showInputDialog("Deseja atualizar o nome da editora "+actualName+" ?");
+        String publisherUrlRefreshed = JOptionPane.showInputDialog("Deseja atualizar a URL da editora "+actualName+" ?");
         
-        if(nomeEditoraAtualizado == null || nomeEditoraAtualizado.equals("") || nomeEditoraAtualizado.trim().equals(""))
-            nomeEditoraAtualizado = nomeAtual;
+        if(publisherNameRefreshed == null || publisherNameRefreshed.equals("") || publisherNameRefreshed.trim().equals(""))
+            publisherNameRefreshed = actualName;
         
-        if(urlEditoraAtualizado == null || urlEditoraAtualizado.equals("") || urlEditoraAtualizado.trim().equals(""))
-            urlEditoraAtualizado = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 2).toString();
+        if(publisherUrlRefreshed == null || publisherUrlRefreshed.equals("") || publisherUrlRefreshed.trim().equals(""))
+            publisherUrlRefreshed = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 2).toString();
         
-        return new Publisher(Id, nomeEditoraAtualizado, urlEditoraAtualizado);
+        return new Publisher(Id, publisherNameRefreshed, publisherUrlRefreshed);
     }
 
     @Override
     public int getDeletePublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(jtable_Editoras.getSelectionModel().isSelectionEmpty())
+            return 0;   
+        
+        return Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
     }
 
     @Override
@@ -886,22 +930,22 @@ public class Janela extends javax.swing.JFrame implements View{
        int isbn = 0;
        double price = 0;
         try {
-        	if(txt_titulo.getText().equals("") || txt_isbn.getText().equals("") || txt_Preco.getText().equals("")) {
-        		throw new Exception("Por favor preencha todos os campos!");
-        	} else {
-                    titulo = txt_titulo.getText();
-                    try {
-                            isbn = Integer.parseInt(txt_isbn.getText());
-                            price = Double.parseDouble(txt_Preco.getText());
-                            
-                            if(isbn < 0) 
-                                throw new Exception("ISBN inválido (o ISBN não pode ser negativo!)");
-                            if(price < 0)
-                                throw new Exception("Valor inválido! (valor não pode ser negativo)");
-                    } catch (java.lang.NumberFormatException e) {
-                            throw new Exception("ISBN inválido (use um número inteiro!)");
-                    }
-        	}
+            if(txt_titulo.getText().equals("") || txt_isbn.getText().equals("") || txt_Preco.getText().equals("")) {
+                throw new Exception("Por favor preencha todos os campos!");
+            } else {
+                titulo = txt_titulo.getText();
+                try {
+                    isbn = Integer.parseInt(txt_isbn.getText());
+                    price = Double.parseDouble(txt_Preco.getText());
+
+                    if(isbn < 0) 
+                        throw new Exception("ISBN inválido (o ISBN não pode ser negativo!)");
+                    if(price < 0)
+                        throw new Exception("Valor inválido! (valor não pode ser negativo)");
+                } catch (java.lang.NumberFormatException e) {
+                    throw new Exception("ISBN inválido (use um número inteiro!)");
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -935,13 +979,13 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public void atualizaTextoListaAutores(List<Author> authors) {
-        String txtAtualizado = "";
+        String refreshedText = "";
         if(!authors.isEmpty()){
             for(Author a : authors){
-               txtAtualizado += a + "; ";
+               refreshedText += a + "; ";
             }
-            txtArea_AutoresDoLivro.setText(txtAtualizado);
-            txtAtualizado = "";
+            txtArea_AutoresDoLivro.setText(refreshedText);
+            refreshedText = "";
         }
         else{
             txtArea_AutoresDoLivro.setText("A lista está Vazia...");

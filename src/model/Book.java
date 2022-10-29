@@ -17,6 +17,19 @@ public class Book {
         this.authors = authors;
         this.publisher_id = publisher_id;
     }
+    
+    public Book(String title, String isbn, double price, int publisher_id) {
+       this.title = title;
+       this.isbn = isbn;
+       this.price = price;
+       this.publisher_id = publisher_id;
+    }
+    
+    public Book(String title, String isbn, double price) {
+       this.title = title;
+       this.isbn = isbn;
+       this.price = price;
+    }
 
     public Book(){
 
