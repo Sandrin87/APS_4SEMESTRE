@@ -4,17 +4,15 @@
  */
 package View;
 
-import DAO.Interfaces.IAuthorDao;
-import DAO.Interfaces.IBookDao;
-import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
+import model.User;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -747,7 +745,17 @@ public class Janela extends javax.swing.JFrame implements View{
         if(authors != null && !authors.isEmpty())
             this.refreshTableAuthors(authors);
     }
-    
+
+    @Override
+    public User logar() {
+        return null;
+    }
+
+    @Override
+    public void logarActionListnerPublisher(ActionListener al) {
+
+    }
+
     @Override
     public void addExistentAuthorsToListActionListner(ActionListener al) {
         btn_addListaAutoresLivros.addActionListener(al);

@@ -15,13 +15,13 @@ public class ConectionDB {
         String password;
 
         //conexão vitória:
-        //String url = "jdbc:mysql://localhost:3306/livraria";
-        //driver = "com.mysql.jdbc.Driver";
-        //password = "";
+        url = "jdbc:mysql://localhost:3306/livraria";
+        driver = "com.mysql.jdbc.Driver";
+        password = "";
         
         //conexão sandrin
-        url = "jdbc:mysql://localhost:3306/livrariadb";
-        password = "Admin@1234";
+//        url = "jdbc:mysql://localhost:3306/livrariadb";
+//        password = "Admin@1234";
         
         
         

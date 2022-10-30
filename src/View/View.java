@@ -4,12 +4,10 @@
  */
 package View;
 
-import DAO.Interfaces.IAuthorDao;
-import DAO.Interfaces.IBookDao;
-import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
+import model.User;
 
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -74,4 +72,8 @@ public interface View {
     public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
     
     public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
+
+    User logar();
+    public void logarActionListnerPublisher(ActionListener al);
+
 }
