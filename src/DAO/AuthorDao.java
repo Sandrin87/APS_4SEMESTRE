@@ -26,8 +26,22 @@ public class AuthorDao implements IAuthorDao {
     }
 
     @Override
-    public void insertAuthor(String name, String fName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insertAuthor(String name, String fName) { //FEITO
+        String sql = "INSERT INTO Authors (name, fName) VALUES (?, ?)";
+
+            try {
+                PreparedStatement ps = conexao.prepareStatement(sql);
+
+                ps.setString(1, name);
+                ps.setString(2, fName);
+
+                ps.execute();
+
+                System.out.println("Autor(a) " + name + " " + fName + " foi incluído com sucesso!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }    
+    
     }
 
     @Override
@@ -54,7 +68,7 @@ public class AuthorDao implements IAuthorDao {
 
     @Override
     public Author getAuthorById(int id) {
-       String sql = "SELECT * FROM Authors WHERE author_id = ?";
+        String sql = "SELECT * FROM Authors WHERE author_id = ?";
 
         try {
             PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -115,15 +129,52 @@ public class AuthorDao implements IAuthorDao {
             throw new Exception(e.getMessage());
         }
     }
-
-    @Override
-    public void deleteBook(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Author getByFilter(String name, String fName) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
+    @Override
+    public Author getByFilter(String name, String fName) { //AQ
+        String sql = "SELECT * FROM Authors WHERE name = ? AND fName = ?";
+
+        try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, name);
+
+            ResultSet rs = pstm.executeQuery();
+
+            Author author = null;
+            if(rs.next()){
+               int author_id = rs.getInt("author_id");
+               String names = rs.getString("name");
+               String firstName = rs.getString("fname");
+
+               author = new Author(author_id, name, firstName);
+               System.out.println("foi encontrado o autor com o nome: " + names);
+
+               return author;
+
+            } else {
+                System.out.println("Não foi encontrado um autor com o nome: " + name + " " +fName);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
+  
+    @Override
+    public void deleteAuthor(int author_id) {
+        String sql = "DELETE FROM Authors WHERE author_id = ?";
+
+            try {
+                PreparedStatement ps = conexao.prepareStatement(sql);
+
+                ps.setInt(1, author_id);
+                ps.execute();
+
+                System.out.println("Autor: " + author_id + " foi excluído com sucesso");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }    
+    }
 }
+    

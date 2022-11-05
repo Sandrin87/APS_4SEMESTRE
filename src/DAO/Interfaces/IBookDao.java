@@ -24,5 +24,5 @@ public interface IBookDao {
 
     List<Book> getAllBooks() throws Exception;
     
-    void deleteBook(int id);
+    void deleteBook(String isbn);
 }

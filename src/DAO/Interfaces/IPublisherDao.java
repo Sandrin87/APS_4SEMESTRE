@@ -25,5 +25,5 @@ public interface IPublisherDao {
     
     List<Publisher> getAllPublishers() throws Exception;
     
-    void deletePublisher(int id);
+    void deletePublisher(int publisher_id);
 }

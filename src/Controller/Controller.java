@@ -31,6 +31,8 @@ public class Controller {
     View view;
     
     List<Author> authors = new ArrayList<>();
+    List<Book> books = new ArrayList<>();
+    List<Publisher> publishers = new ArrayList<>();
     
     public Controller(IAuthorDao _authorDao, IBookDao _bookDao, IPublisherDao _publisherDao, View _view){
         this.authorDao = _authorDao;
@@ -46,7 +48,7 @@ public class Controller {
         view.editActionListnerAuthor(new ActionEditAuthor());
         view.excludeActionListnerAuthor(new ActionExcludeAuthor());
         
-        view.addActionListnerBook(new ActionInsertAuthor());
+        view.addActionListnerBook(new ActionInsertBook());
         view.addExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
         view.removeExistentAuthorsToListActionListner(new ActionRemoveExistentAuthorsToListActionListner());
         view.editActionListnerBook(new ActionEditBook());
@@ -68,7 +70,7 @@ public class Controller {
         
     }
     
-    class ActionEditAuthor implements ActionListener{
+    class ActionEditAuthor implements ActionListener{ //AQ 
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -81,33 +83,29 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            authorDao.deleteAuthor(view.getDeleteAuthor());
         }
         
     }
     
-    class AcaoInsertAuthor implements ActionListener{
-
+    /*class ActionSearchAuthor implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            authorDao.getByFilter(view.getSearchAuthors());
         }
-        
-    }
+    }*/
     
-    class ActionInsertBook implements ActionListener{
+    class ActionInsertBook implements ActionListener{ //Perguntar
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
             
             bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice());
-            authors = new ArrayList<>();
-        }
-        
+        }        
     }
     
-    class ActionEditBook implements ActionListener{
+    class ActionEditBook implements ActionListener{ //AQ
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -116,20 +114,30 @@ public class Controller {
         
     }
     
-    class ActionExcludeBook implements ActionListener{
+    class ActionExcludeBook implements ActionListener{ //ERRO
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            bookDao.deleteBook(view.getDeleteBook());
         }
         
     }
+    
+    class ActionSearchBook implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            bookDao.getBooksByTitle(view.getSearchBooks());
+        }
+    }
+    
     
     class ActionInsertPublisher implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            Publisher publisherToInsert = view.getAddPublisher();
+            
+            publisherDao.insertPublisher(publisherToInsert.getUrl(), publisherToInsert.getName());
         }
         
     }
@@ -155,7 +163,8 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            publisherDao.deletePublisher(view.getDeletePublishers());
+        
         }
         
     }
@@ -175,6 +184,8 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             
+            publisherDao.deletePublisher(view.getDeletePublishers());
+            
             if(authors.size() > 0)
                 authors.remove((authors.size()-1));
             
@@ -182,4 +193,12 @@ public class Controller {
         }
         
     }
+    
+    class ActionSearchPublisher implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            publisherDao.getPublisherByName(view.getSearchPublishers());
+        }
+    }
+    
 }
