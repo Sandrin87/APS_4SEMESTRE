@@ -20,7 +20,7 @@ public interface IAuthorDao {
     
     Author getAuthorById(int id);
     
-    Author getByFilter(String name, String fName);
+    List<Author> getByFilter(String name, String fName);
     
     List<Author> getAllAuthors() throws Exception;
     

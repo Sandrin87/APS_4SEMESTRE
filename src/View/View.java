@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.Controller;
 import model.Author;
 import model.Book;
 import model.Publisher;
@@ -77,5 +78,11 @@ public interface View {
 
     User logar();
     public void logarActionListnerPublisher(ActionListener al);
+
+    public void searchActionListnerPublisher(ActionListener al);
+
+    public void searchActionListnerBook(ActionListener al);
+
+    public void searchActionListnerAutor(ActionListener al);
 
 }
