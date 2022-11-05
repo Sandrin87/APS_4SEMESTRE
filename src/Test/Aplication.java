@@ -8,7 +8,6 @@ import DAO.Interfaces.IBookDao;
 import DAO.Interfaces.IPublisherDao;
 import DAO.PublisherDao;
 import View.Janela;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
