@@ -20,17 +20,12 @@ public class ConectionDB {
         password = "";
         
         //conexão sandrin
-<<<<<<< HEAD
-//        url = "jdbc:mysql://localhost:3306/livrariadb";
-//        password = "Admin@1234";
-=======
-        //url = "jdbc:mysql://localhost:3306/livrariadb";
-        //password = "Admin@1234";
->>>>>>> parent of f988021 (refatorando e adicionando edit e busca de entidades)
+        url = "jdbc:mysql://localhost:3306/livrariadb";
+        password = "Admin@1234";
         
         //conexão bia
-        url = "jdbc:mysql://localhost:3306/Livraria";
-        password = "";
+        //url = "jdbc:mysql://localhost:3306/Livraria";
+        //password = "";
         
         
         try {

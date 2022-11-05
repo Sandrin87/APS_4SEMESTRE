@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
 import model.Author;
@@ -67,8 +63,8 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_EditarEditora = new javax.swing.JButton();
         btn_BuscarEditora = new javax.swing.JButton();
         btn_ExcluirEditora = new javax.swing.JButton();
-        txt_NomeBuscaEditora = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        txt_NomeBuscaEditora = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         txt_NomeEditora = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -96,10 +92,10 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_addListaAutoresLivros = new javax.swing.JButton();
         cbo_EditorasExistentes = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        btn_AddNovoLivro = new javax.swing.JButton();
         txt_Preco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         btn_removeListaAutoresLivros = new javax.swing.JButton();
+        btn_AddNovoLivro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,15 +252,15 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_ExcluirEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_ExcluirEditora.setText("Excluir");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Nome:");
+
         txt_NomeBuscaEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_NomeBuscaEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_NomeBuscaEditoraActionPerformed(evt);
             }
         });
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel13.setText("Nome:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -274,16 +270,16 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(table_Editoras, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
+                        .addComponent(table_Editoras, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_EditarEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_NomeBuscaEditora)
-                                .addGap(56, 56, 56)
+                                .addGap(50, 50, 50)
                                 .addComponent(btn_ExcluirEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_BuscarEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,8 +293,8 @@ public class Janela extends javax.swing.JFrame implements View{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_NomeBuscaEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13))
+                                .addComponent(jLabel13)
+                                .addComponent(txt_NomeBuscaEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btn_ExcluirEditora))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_EditarEditora)
@@ -342,14 +338,17 @@ public class Janela extends javax.swing.JFrame implements View{
                         .addComponent(txt_NomeEditora)
                         .addGap(184, 184, 184))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel14))
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(txt_SiteEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_AddEditora)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel14))
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(txt_SiteEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_AddEditora)))
+                        .addGap(0, 1, Short.MAX_VALUE)))
                 .addGap(77, 77, 77))
         );
         jPanel6Layout.setVerticalGroup(
@@ -420,7 +419,7 @@ public class Janela extends javax.swing.JFrame implements View{
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                 .addComponent(btn_excluirLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -432,10 +431,9 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
                             .addComponent(btn_excluirLivro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_editarLivro)
@@ -478,14 +476,6 @@ public class Janela extends javax.swing.JFrame implements View{
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Preço R$:");
 
-        btn_AddNovoLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_AddNovoLivro.setText("Adicionar Novo Livro");
-        btn_AddNovoLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddNovoLivroActionPerformed(evt);
-            }
-        });
-
         txt_Preco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -493,6 +483,14 @@ public class Janela extends javax.swing.JFrame implements View{
 
         btn_removeListaAutoresLivros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_removeListaAutoresLivros.setText("Remover");
+
+        btn_AddNovoLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_AddNovoLivro.setText("Adicionar Novo Livro");
+        btn_AddNovoLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddNovoLivroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -506,7 +504,7 @@ public class Janela extends javax.swing.JFrame implements View{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addGap(0, 99, Short.MAX_VALUE)
+                        .addGap(0, 105, Short.MAX_VALUE)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbo_EditorasExistentes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,14 +524,14 @@ public class Janela extends javax.swing.JFrame implements View{
                                     .addComponent(jLabel11)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btn_AddNovoLivro))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                        .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(174, 174, 174))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(btn_AddNovoLivro)
+                        .addGap(16, 16, 16))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,8 +582,6 @@ public class Janela extends javax.swing.JFrame implements View{
             .addComponent(jTabbedPane1)
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleParent(jPanel2);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -599,6 +595,22 @@ public class Janela extends javax.swing.JFrame implements View{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AddEditoraActionPerformed
+
+    private void txt_NomeBuscaEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NomeBuscaEditoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NomeBuscaEditoraActionPerformed
+
+    private void btn_AddNovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddNovoLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AddNovoLivroActionPerformed
+
+    private void btn_excluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_excluirLivroActionPerformed
 
     /**
      * @param args the command line arguments
