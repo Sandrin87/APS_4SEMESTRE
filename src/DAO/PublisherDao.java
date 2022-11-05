@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -136,31 +138,39 @@ public class PublisherDao implements IPublisherDao{
     }
 
     @Override
-    public Publisher getPublisherByName(String name) {
-        String sql = "SELECT * FROM Publishers WHERE name = ?";
+    public List<Publisher> getPublisherByName(String name) {
+        
+        if(name == null || name.equals("") || name.trim().equals(""))
+        {
+            try {
+                return this.getAllPublishers();
+            } catch (Exception ex) {
+                System.out.println("Erro interno, não foi possivel carregar nenhuma editora");
+            }
+        }
+        
+        List<Publisher> publishers = new ArrayList<>();
+        String sql = "SELECT * FROM Publishers WHERE name LIKE ?";
 
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
             pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, name);
+            pstm.setString(1, "%"+name+"%");
 
             rs = pstm.executeQuery();
 
             Publisher publisher = null;
-            if (rs.next()) {
+            while (rs.next()) {
                 String names = rs.getString("name");
                 String url = rs.getString("url");
                 int publisherP = rs.getInt("publisher_id");
-
-                publisher = new Publisher(publisherP, names, url);
-                publisher.setPublisher_id(rs.getInt("name"));
+                
+                publishers.add(new Publisher(publisherP, names, url));
 
                 System.out.println("Foi encontrado uma Editora com o nome " + names);
-                return publisher;
-            } else {
-                System.out.println("Nao foi encontrado uma Editora com o nome " + name);
-            }
+            } 
+            return publishers;
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,11 +16,11 @@ public interface IBookDao {
     
     void insertBook(String title, String isbn, int publisherId, double price);
     
-    void editBook(String title, double price, int publisherId, String isbn);
+    void editBook(String title, double price, String isbn);
     
     Book getBookByIsbn(String isbn);
     
-    Book getBooksByTitle(String title);
+    List<Book> getBooksByTitle(String title);
 
     List<Book> getAllBooks() throws Exception;
     
