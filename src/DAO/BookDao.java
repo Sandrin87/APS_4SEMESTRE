@@ -46,19 +46,20 @@ public class BookDao implements IBookDao{
     }
 
     @Override
-    public void editBook(String title, double price, String isbn) {
+    public void editBook(String title, double price,int publisherId, String isbn) {
 
-        String sql = "UPDATE Books SET title = ?, price = ? " +
+        String sql = "UPDATE Books SET title = ?, price = ?, publisher_id = ? " +
                 "WHERE isbn = ?";
 
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, title);
             ps.setDouble(2, price);
+            ps.setInt(3, publisherId);
 
             Book book = getBookByIsbn(isbn);
             if(book != null){
-                ps.setString(3, book.getIsbn());
+                ps.setString(4, book.getIsbn());
                 ps.execute();
                 System.out.println("livro editado");
             }
@@ -101,36 +102,31 @@ public class BookDao implements IBookDao{
     }
 
     @Override
-    public List<Book> getBooksByTitle(String titles) {
-        
-        if(titles == null || titles.equals("") || titles.trim().equals(""))
-        {
-            try {
-                return this.getAllBooks();
-            } catch (Exception ex) {
-                System.out.println("Erro interno, não foi possivel carregar nenhuma editora");
-            }
-        }
-        
-        List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM Books WHERE title LIKE ?";
+    public Book getBooksByTitle(String titles) {
+
+        String sql = "SELECT * FROM Books WHERE title = ?";
 
         try {
             PreparedStatement pst = conexao.prepareStatement(sql);
-            pst.setString(1, "%"+titles+"%");
+            pst.setString(1, titles);
 
             ResultSet rs = pst.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 String title = rs.getString("title");
                 String isbn = rs.getString("isbn");
                 double price = rs.getDouble("price");
                 int publishers = rs.getInt("publisher_id");
 
                 Book book = new Book(title, isbn, price, publishers);
-                books.add(book);
+                book.setPublisher_id(rs.getInt("publisher_id"));
+
+                System.out.println(book);
+
+                return book;
             }
-            return books;
+
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +171,7 @@ public class BookDao implements IBookDao{
     
 
     @Override
-    public void deleteBook(String isbn) {
+    public void deleteBook(String isbn) { //Testar essa parte
         String sql = "DELETE FROM Books WHERE isbn = ?";
 
                 try {

@@ -21,7 +21,7 @@ public interface IPublisherDao {
     
     Publisher getPublisherById(int id) throws SQLException;
     
-    List<Publisher> getPublisherByName(String name);
+    Publisher getPublisherByName(String name);
     
     List<Publisher> getAllPublishers() throws Exception;
     
