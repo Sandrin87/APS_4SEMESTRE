@@ -4,11 +4,9 @@
  */
 package View;
 
-import Controller.Controller;
 import model.Author;
 import model.Book;
 import model.Publisher;
-import model.User;
 
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -76,8 +74,6 @@ public interface View {
     
     public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
 
-    User logar();
-    public void logarActionListnerPublisher(ActionListener al);
 
     public void searchActionListnerPublisher(ActionListener al);
 

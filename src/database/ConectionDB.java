@@ -7,27 +7,14 @@ import java.sql.SQLException;
 public class ConectionDB {
 
     public static Connection conector() throws Exception {
-        java.sql.Connection conexao = null;
+        Connection conexao = null;
+
+        String url = "jdbc:mysql://localhost:3306/livraria";
         String driver = "com.mysql.jdbc.Driver";
         String user = "root";
-        
-        String url;
-        String password;
+        String password = "";
 
-        //conexão vitória:
-        url = "jdbc:mysql://localhost:3306/livraria";
-        driver = "com.mysql.jdbc.Driver";
-        password = "";
-        
-        //conexão sandrin
-        url = "jdbc:mysql://localhost:3306/livrariadb";
-        password = "Admin@1234";
-        
-        //conexão bia
-        //url = "jdbc:mysql://localhost:3306/Livraria";
-        //password = "";
-        
-        
+
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
