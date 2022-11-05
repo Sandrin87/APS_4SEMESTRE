@@ -116,13 +116,6 @@ public class AuthorDao implements IAuthorDao {
                 authorsList.add(author);
             }
 
-            System.out.println("Autores recuperado!");
-
-            for(Author author : authorsList){
-                System.out.println(author.getAuthor_id() +
-                        " " + author.getFirstName() +
-                        " " + author.getLastName());
-            }
             return authorsList;
 
         } catch (Exception e){
@@ -131,17 +124,7 @@ public class AuthorDao implements IAuthorDao {
     }
     
     @Override
-    public List<Author> getByFilter(String name, String fName) {
-        
-        if(name == null || name.equals("") || name.trim().equals("")
-            && fName == null || fName.equals("") || fName.trim().equals(""))
-        {
-            try {
-                return this.getAllAuthors();
-            } catch (Exception ex) {
-                System.out.println("Erro interno, não foi possivel carregar nenhuma editora");
-            }
-        }
+    public List<Author> getByFilter(String fName, String name) {
         
         List<Author> authors = new ArrayList<>();
         
@@ -150,12 +133,12 @@ public class AuthorDao implements IAuthorDao {
         String fNameFilter = "";
         
         try {
-            if(name != null || !name.equals("") || !name.trim().equals(""))
+            if(name != null || !name.equals(""))
                 nameFilter = " name LIKE ? ";
             
-            if(fName != null || !fName.equals("") || !fName.trim().equals(""))
+            if(fName != null || !fName.equals(""))
             {
-                if(nameFilter == null || nameFilter.equals("") || nameFilter.trim().equals(""))
+                if(nameFilter.equals(""))
                     fNameFilter = " fname LIKE ?";
                 
                 fNameFilter = " AND fname LIKE ?";
@@ -164,17 +147,13 @@ public class AuthorDao implements IAuthorDao {
             sql += nameFilter + fNameFilter;
             
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            
-            if(name != null || !name.equals("") || !name.trim().equals(""))
-                pstm.setString(1, "%"+name+"%");
-            
-            if(fName != null || !fName.equals("") || !fName.trim().equals(""))
-            {
-                if(nameFilter == null || nameFilter.equals("") || nameFilter.trim().equals(""))
-                    pstm.setString(1, "%"+fName+"%");
-                
-                pstm.setString(2, "%"+fName+"%");
-            }
+
+            pstm.setString(1, "%"+name+"%");
+
+            if(nameFilter.equals(""))
+                pstm.setString(1, "%"+fName+"%");
+
+            pstm.setString(2, "%"+fName+"%");
 
             ResultSet rs = pstm.executeQuery();
 
@@ -184,7 +163,7 @@ public class AuthorDao implements IAuthorDao {
                String firstName = rs.getString("fname");
 
                authors.add(new Author(author_id, names, firstName));
-               System.out.println("foi encontrado o autor com o nome: " + names);
+               System.out.println("foi encontrado o autor com o nome: " + names + " " + firstName);
                
             } 
             return authors;

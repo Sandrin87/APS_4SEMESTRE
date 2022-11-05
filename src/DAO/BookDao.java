@@ -158,14 +158,6 @@ public class BookDao implements IBookDao{
                 bookList.add(book);
             }
 
-            System.out.println("Livros recuperados!");
-
-            for(Book book : bookList){
-                System.out.println(book.getTitle() + " " +
-                        book.getIsbn() + " " +
-                        book.getPrice() + " " +
-                        book.getPublisher_id());
-            }
             return bookList;
 
         } catch (Exception e){

@@ -14,8 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -125,11 +123,6 @@ public class PublisherDao implements IPublisherDao{
                 publisherList.add(publisher);
             }
 
-            System.out.println("Publishers!");
-
-            for(Publisher publisher : publisherList){
-                System.out.println(publisher.getPublisher_id() + " " + publisher.getName() + " " + publisher.getUrl() );
-            }
             return publisherList;
 
         } catch (Exception e){
