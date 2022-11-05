@@ -4,7 +4,7 @@ CREATE TABLE Books (
   publisher_id int, 
   price DECIMAL(10,2),
   PRIMARY KEY (isbn), 
-  FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id)
+  FOREIGN KEY (publisher_id) REFERENCES Publishers (publisher_id) ON DELETE CASCADE
 );
 INSERT INTO Books VALUES ('A Guide to the SQL Standard', '0-201-96426-0', '0201', 47.95);
 INSERT INTO Books VALUES ('A Pattern Language: Towns, Buildings, Construction', '0-19-501919-9', '019', 65.00);
@@ -26,4 +26,5 @@ INSERT INTO Books VALUES ('The Mythical Man-Month', '0-201-83595-9', '0201', 29.
 INSERT INTO Books VALUES ('The Soul of a New Machine', '0-679-60261-5', '0679', 18.95);
 INSERT INTO Books VALUES ('The UNIX Hater''s Handbook', '1-56884-203-1', '0471', 16.95);
 INSERT INTO Books VALUES ('UNIX System Administration Handbook', '0-13-020601-6', '013', 68.00);
+
 SELECT * FROM Books;

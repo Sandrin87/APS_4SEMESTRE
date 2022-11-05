@@ -168,10 +168,22 @@ public class BookDao implements IBookDao{
             throw new Exception(e.getMessage());
         }
     }
+    
 
     @Override
-    public void deleteBook(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteBook(String isbn) { //Testar essa parte
+        String sql = "DELETE FROM Books WHERE isbn = ?";
+
+                try {
+                    PreparedStatement ps = conexao.prepareStatement(sql);
+
+                    ps.setString(1, isbn);
+                    ps.execute();
+
+                    System.out.println("Livro: " + isbn + " foi excluído com sucesso");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }    
     }
     
 }

@@ -24,5 +24,5 @@ public interface IAuthorDao {
     
     List<Author> getAllAuthors() throws Exception;
     
-    void deleteBook(int id);
+    void deleteAuthor(int author_id);
 }

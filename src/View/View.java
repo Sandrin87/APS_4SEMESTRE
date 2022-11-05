@@ -45,7 +45,7 @@ public interface View {
     
     public Book getEditBooks();
     
-    public int getDeleteBook();
+    public String getDeleteBook();
     
     public void addActionListnerBook(ActionListener al);
     
@@ -62,6 +62,8 @@ public interface View {
     public Publisher getEditPublishers();
     
     public int getDeletePublishers();
+    
+    public String getSearchPublishers();
     
     public void addActionListnerPublisher(ActionListener al);
     

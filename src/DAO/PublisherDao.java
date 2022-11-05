@@ -28,7 +28,24 @@ public class PublisherDao implements IPublisherDao{
 
     @Override
     public void insertPublisher(String name, String url) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "INSERT INTO Publishers (name, url) VALUES (?, ?)";
+
+          try {
+
+              PreparedStatement ps = conexao.prepareStatement(sql);
+              ps.setString (1, name);
+              ps.setString (2, url);
+
+              ps.execute();
+
+              System.out.println ("Editora " + name + " foi incluída com sucesso!");
+
+          }catch (Exception e){
+
+           e.printStackTrace();
+
+          }
+
     }
 
     @Override
@@ -119,13 +136,54 @@ public class PublisherDao implements IPublisherDao{
     }
 
     @Override
-    public void deletePublisher(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Publisher getPublisherByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM Publishers WHERE name = ?";
+
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, name);
+
+            rs = pstm.executeQuery();
+
+            Publisher publisher = null;
+            if (rs.next()) {
+                String names = rs.getString("name");
+                String url = rs.getString("url");
+                int publisherP = rs.getInt("publisher_id");
+
+                publisher = new Publisher(publisherP, names, url);
+                publisher.setPublisher_id(rs.getInt("name"));
+
+                System.out.println("Foi encontrado uma Editora com o nome " + names);
+                return publisher;
+            } else {
+                System.out.println("Nao foi encontrado uma Editora com o nome " + name);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;    
+        
+
     }
+    
+    @Override
+    public void deletePublisher(int publisher_id) { //Testar essa parte
+        String sql = "DELETE FROM Publishers WHERE publisher_id = ?";
+
+            try {
+                PreparedStatement ps = conexao.prepareStatement(sql);
+
+                ps.setInt(1, publisher_id);
+                ps.execute();
+
+                System.out.println("Editora: " + publisher_id + " foi excluída com sucesso!");
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }   
+   }
     
 }
