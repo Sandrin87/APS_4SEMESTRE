@@ -131,63 +131,29 @@ public class AuthorDao implements IAuthorDao {
     }
     
     @Override
-    public List<Author> getByFilter(String name, String fName) {
-        
-        if(name == null || name.equals("") || name.trim().equals("")
-            && fName == null || fName.equals("") || fName.trim().equals(""))
-        {
-            try {
-                return this.getAllAuthors();
-            } catch (Exception ex) {
-                System.out.println("Erro interno, não foi possivel carregar nenhuma editora");
-            }
-        }
-        
-        List<Author> authors = new ArrayList<>();
-        
-        String sql = "SELECT * FROM Authors WHERE ";
-        String nameFilter = "";
-        String fNameFilter = "";
-        
+    public Author getByFilter(String name, String fName) { //AQ
+        String sql = "SELECT * FROM Authors WHERE name = ? AND fName = ?";
+
         try {
-            if(name != null || !name.equals("") || !name.trim().equals(""))
-                nameFilter = " name LIKE ? ";
-            
-            if(fName != null || !fName.equals("") || !fName.trim().equals(""))
-            {
-                if(nameFilter == null || nameFilter.equals("") || nameFilter.trim().equals(""))
-                    fNameFilter = " fname LIKE ?";
-                
-                fNameFilter = " AND fname LIKE ?";
-            }
-            
-            sql += nameFilter + fNameFilter;
-            
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            
-            if(name != null || !name.equals("") || !name.trim().equals(""))
-                pstm.setString(1, "%"+name+"%");
-            
-            if(fName != null || !fName.equals("") || !fName.trim().equals(""))
-            {
-                if(nameFilter == null || nameFilter.equals("") || nameFilter.trim().equals(""))
-                    pstm.setString(1, "%"+fName+"%");
-                
-                pstm.setString(2, "%"+fName+"%");
-            }
+            pstm.setString(1, name);
 
             ResultSet rs = pstm.executeQuery();
 
-            while(rs.next()){
+            Author author = null;
+            if(rs.next()){
                int author_id = rs.getInt("author_id");
                String names = rs.getString("name");
                String firstName = rs.getString("fname");
 
-               authors.add(new Author(author_id, names, firstName));
+               author = new Author(author_id, name, firstName);
                System.out.println("foi encontrado o autor com o nome: " + names);
-               
-            } 
-            return authors;
+
+               return author;
+
+            } else {
+                System.out.println("Não foi encontrado um autor com o nome: " + name + " " +fName);
+            }
 
         } catch (Exception e){
             e.printStackTrace();

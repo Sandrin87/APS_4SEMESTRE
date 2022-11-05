@@ -3,6 +3,7 @@ package DAO;
 import DAO.Interfaces.IUserDao;
 import database.ConectionDB;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,12 +27,16 @@ public class UserDao implements IUserDao {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Usuario Logado");
                 return "Sucesso";
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido");
+                return "falha";
             }
         } catch (Exception e) {
-            e.getMessage();
+            JOptionPane.showMessageDialog(null, e);
 
         }
-     return "null";
+ return "null";
     }
 }
