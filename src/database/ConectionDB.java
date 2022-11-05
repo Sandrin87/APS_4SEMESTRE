@@ -23,6 +23,9 @@ public class ConectionDB {
 //        url = "jdbc:mysql://localhost:3306/livrariadb";
 //        password = "Admin@1234";
         
+        //conexão bia
+        //url = "jdbc:mysql://localhost:3306/Livraria";
+        //password = "";
         
         
         try {
