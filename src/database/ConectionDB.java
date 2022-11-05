@@ -19,13 +19,13 @@ public class ConectionDB {
         driver = "com.mysql.jdbc.Driver";
         password = "";
         
-        //conexão sandrin
-        url = "jdbc:mysql://localhost:3306/livrariadb";
-        password = "Admin@1234";
-        
-        //conexão bia
-        //url = "jdbc:mysql://localhost:3306/Livraria";
-        //password = "";
+//        //conexão sandrin
+//        url = "jdbc:mysql://localhost:3306/livrariadb";
+//        password = "Admin@1234";
+//
+//        //conexão bia
+//        //url = "jdbc:mysql://localhost:3306/Livraria";
+//        //password = "";
         
         
         try {

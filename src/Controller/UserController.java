@@ -37,7 +37,6 @@ public class UserController implements ViewLogin {
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
-
                         Janela j = new Janela();
                         j.setVisible(true);
                         new Controller(authorDao, bookDao, publisherDao, j).init();
