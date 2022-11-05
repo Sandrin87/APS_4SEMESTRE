@@ -31,6 +31,8 @@ public class Controller {
     View view;
     
     List<Author> authors = new ArrayList<>();
+    List<Book> books = new ArrayList<>();
+    List<Publisher> publishers = new ArrayList<>();
     
     public Controller(IAuthorDao _authorDao, IBookDao _bookDao, IPublisherDao _publisherDao, View _view){
         this.authorDao = _authorDao;
@@ -42,16 +44,19 @@ public class Controller {
     public void init() throws Exception{
         view.initVisualComponents(bookDao.getAllBooks(), publisherDao.getAllPublishers(), authorDao.getAllAuthors());
         
+        view.searchActionListnerAutor(new ActionSearchListnerAuthor());
         view.addActionListnerAuthor(new ActionInsertAuthor());
         view.editActionListnerAuthor(new ActionEditAuthor());
         view.excludeActionListnerAuthor(new ActionExcludeAuthor());
         
-        view.addActionListnerBook(new ActionInsertAuthor());
+        view.searchActionListnerBook(new ActionSearchListnerBook());
+        view.addActionListnerBook(new ActionInsertBook());
         view.addExistentAuthorsToListActionListner(new ActionAddExistentAuthorsToListActionListner());
         view.removeExistentAuthorsToListActionListner(new ActionRemoveExistentAuthorsToListActionListner());
         view.editActionListnerBook(new ActionEditBook());
         view.excludeActionListnerBook(new ActionExcludeBook());
         
+        view.searchActionListnerPublisher(new ActionSearchPublisher());
         view.addActionListnerPublisher(new ActionInsertPublisher());
         view.editActionListnerPublisher(new ActionEditPublisher());
         view.excludeActionListnerPublisher(new ActionExcludePublisher());
@@ -68,11 +73,19 @@ public class Controller {
         
     }
     
-    class ActionEditAuthor implements ActionListener{
+    class ActionEditAuthor implements ActionListener{ //AQ 
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            Author a = view.getEditAuthors();
+            if(a != null){
+              try {
+                    authorDao.editAuthor(a.getFirstName(), a.getLastName(), a.getAuthor_id());
+                    view.refreshVisualComponents(null, null, authorDao.getAllAuthors());
+                } catch (Exception ex) {
+                    System.out.println("Erro do sistema.");
+                }  
+            }
         }
         
     }
@@ -81,16 +94,7 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-        
-    }
-    
-    class AcaoInsertAuthor implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            authorDao.deleteAuthor(view.getDeleteAuthor());
         }
         
     }
@@ -102,16 +106,22 @@ public class Controller {
             Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
             
             bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice());
-            authors = new ArrayList<>();
-        }
-        
+        }        
     }
     
     class ActionEditBook implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            Book b = view.getEditBooks();
+            if(b != null){
+                try {
+                    bookDao.editBook(b.getTitle(), b.getPrice(), b.getIsbn());
+                    view.refreshVisualComponents(bookDao.getAllBooks(), null, null);
+                } catch (Exception ex) {
+                    System.out.println("Erro do sistema.");
+                }
+            }
         }
         
     }
@@ -120,7 +130,7 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            bookDao.deleteBook(view.getDeleteBook());
         }
         
     }
@@ -129,7 +139,9 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            Publisher publisherToInsert = view.getAddPublisher();
+            
+            publisherDao.insertPublisher(publisherToInsert.getUrl(), publisherToInsert.getName());
         }
         
     }
@@ -155,7 +167,8 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            publisherDao.deletePublisher(view.getDeletePublishers());
+        
         }
         
     }
@@ -175,6 +188,8 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             
+            publisherDao.deletePublisher(view.getDeletePublishers());
+            
             if(authors.size() > 0)
                 authors.remove((authors.size()-1));
             
@@ -182,4 +197,48 @@ public class Controller {
         }
         
     }
+    
+    class ActionSearchPublisher implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                List<Publisher> publisherFiltered = publisherDao.getPublisherByName(view.getSearchPublishers());
+                view.refreshVisualComponents(null, publisherFiltered, null);
+            } catch (Exception ex) {
+                System.out.println("Erro ao buscar Publishers");
+            }
+        }
+    }
+    
+    class ActionSearchListnerBook implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                List<Book> booksFiltered = bookDao.getBooksByTitle(view.getSearchBooks());
+                view.refreshVisualComponents(booksFiltered, null, null);
+            } catch (Exception ex) {
+                System.out.println("Erro ao buscar Livros");
+            }
+        }
+        
+    }
+    
+    class ActionSearchListnerAuthor implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                Author a = view.getSearchAuthors();
+                
+                List<Author> authorsFiltered = authorDao.getByFilter(a.getFirstName(), a.getLastName());
+                view.refreshVisualComponents(null, null, authorsFiltered);
+            } catch (Exception ex) {
+                System.out.println("Erro ao buscar Autores");
+            }
+        }
+        
+    }
+    
 }

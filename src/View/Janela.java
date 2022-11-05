@@ -259,6 +259,11 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_ExcluirEditora.setText("Excluir");
 
         txt_NomeBuscaEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_NomeBuscaEditora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_NomeBuscaEditoraActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Nome:");
@@ -321,6 +326,11 @@ public class Janela extends javax.swing.JFrame implements View{
 
         btn_AddEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_AddEditora.setText("Adicionar Editora");
+        btn_AddEditora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddEditoraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -467,6 +477,11 @@ public class Janela extends javax.swing.JFrame implements View{
 
         btn_AddNovoLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_AddNovoLivro.setText("Adicionar Novo Livro");
+        btn_AddNovoLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddNovoLivroActionPerformed(evt);
+            }
+        });
 
         txt_Preco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -577,6 +592,18 @@ public class Janela extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_AddNovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddNovoLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AddNovoLivroActionPerformed
+
+    private void txt_NomeBuscaEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NomeBuscaEditoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NomeBuscaEditoraActionPerformed
+
+    private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AddEditoraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -612,8 +639,6 @@ public class Janela extends javax.swing.JFrame implements View{
             }
         });
     }
-
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AddEditora;
@@ -829,11 +854,11 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public int getDeleteBook() {
+    public String getDeleteBook() {
         if(jtable_Livros.getSelectionModel().isSelectionEmpty())
-            return 0;  
+            return "";  
         
-        return Integer.valueOf(jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString());
+        return String.valueOf(jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString());
     }
 
     @Override
@@ -959,7 +984,7 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public String getSearchBooks() {
-        return txt_titulo.getText();
+        return txt_tituloLivroBuscar.getText();
     }
 
     @Override
@@ -992,4 +1017,23 @@ public class Janela extends javax.swing.JFrame implements View{
         }
     }
 
+    @Override
+    public void searchActionListnerPublisher(ActionListener al) {
+       btn_BuscarEditora.addActionListener(al);
+    }
+
+    @Override
+    public String getSearchPublishers() {        
+        return txt_NomeBuscaEditora.getText();
+    }
+
+    @Override
+    public void searchActionListnerAutor(ActionListener al) {
+        btn_BuscarAutores.addActionListener(al);
+    }
+
+    @Override
+    public void searchActionListnerBook(ActionListener al) {
+       btn_buscarLivro.addActionListener(al);
+    }
 }
