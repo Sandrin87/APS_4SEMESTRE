@@ -984,7 +984,7 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public String getSearchBooks() {
-        return txt_titulo.getText();
+        return txt_tituloLivroBuscar.getText();
     }
 
     @Override
@@ -1018,7 +1018,22 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public String getSearchPublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void searchActionListnerPublisher(ActionListener al) {
+       btn_BuscarEditora.addActionListener(al);
+    }
+
+    @Override
+    public String getSearchPublishers() {        
+        return txt_NomeBuscaEditora.getText();
+    }
+
+    @Override
+    public void searchActionListnerAutor(ActionListener al) {
+        btn_BuscarAutores.addActionListener(al);
+    }
+
+    @Override
+    public void searchActionListnerBook(ActionListener al) {
+       btn_buscarLivro.addActionListener(al);
     }
 }
