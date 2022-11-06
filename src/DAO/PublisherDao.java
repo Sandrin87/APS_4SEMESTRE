@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DAO.Interfaces.IBookDao;
 import DAO.Interfaces.IPublisherDao;
 import database.ConectionDB;
 import model.Publisher;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Book;
 
 /**
  *
@@ -22,9 +24,16 @@ import java.util.List;
 public class PublisherDao implements IPublisherDao{
 
     Connection conexao = ConectionDB.conector();
+    
+    IBookDao bookDao;
 
     public PublisherDao() throws Exception {
     }
+    
+    public PublisherDao(BookDao _bookDao) throws Exception {
+    
+        bookDao = _bookDao;
+    } 
 
     @Override
     public void insertPublisher(String name, String url) {
@@ -171,7 +180,7 @@ public class PublisherDao implements IPublisherDao{
     }
     
     @Override
-    public void deletePublisher(int publisher_id) { //Testar essa parte
+    public void deletePublisher(int publisher_id) {
         String sql = "DELETE FROM Publishers WHERE publisher_id = ?";
 
             try {
@@ -185,5 +194,56 @@ public class PublisherDao implements IPublisherDao{
                     e.printStackTrace();
             }   
    }
+    
+    public void deleteRelationPublisherBooks(int publisher_id) throws Exception{
+        String sql = "DELETE FROM booksauthors WHERE publisher_id = ?";
+
+            try {
+                List<Book> books = getBooksWithRelationalPublisher(publisher_id);
+                
+                for(Book b: books){
+                    
+                    bookDao.deleteBook(b.getIsbn());
+                }
+                
+                PreparedStatement ps = conexao.prepareStatement(sql);
+
+                ps.setInt(1, publisher_id);
+                ps.execute();
+
+                System.out.println("Relação excluída com sucesso!!!");
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }   
+    }
+    
+    private List<Book> getBooksWithRelationalPublisher(int publisher_id) throws Exception{
+         String sql = "SELECT * FROM booksauthors WHERE publisher_id = ?"; 
+         
+         List<Book> books = new ArrayList<>();
+         
+         try {
+            PreparedStatement pstm = conexao.prepareStatement(sql);
+            pstm.setInt(1, publisher_id);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()){
+                String title = rs.getString("title");
+                String isbn = rs.getString("isbn");
+                
+                Double price = rs.getDouble("price");
+                int publisherId = rs.getInt("publisher_id");
+
+                Book book = new Book(title, isbn, price, publisherId);
+                books.add(book);
+            }
+
+            return books;
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    
+    }
     
 }

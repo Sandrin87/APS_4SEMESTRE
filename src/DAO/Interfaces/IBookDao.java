@@ -7,6 +7,7 @@ package DAO.Interfaces;
 import model.Book;
 
 import java.util.List;
+import model.Author;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface IBookDao {
     
-    void insertBook(String title, String isbn, int publisherId, double price);
+    void insertBook(String title, String isbn, int publisherId, double price,  List<Author> authors);
     
     void editBook(String title, double price, int publisherId, String isbn);
     
@@ -25,4 +26,8 @@ public interface IBookDao {
     List<Book> getAllBooks() throws Exception;
     
     void deleteBook(String isbn);
+    
+    void deleteRelationBooksAuthors(String isbn);
+    
+    void insertRelationBookAuthors(String isbn, List<Author> authors);
 }

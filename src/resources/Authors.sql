@@ -2,7 +2,7 @@ CREATE TABLE Authors (
   author_id int NOT NULL AUTO_INCREMENT, 
   name varchar(255) NOT NULL,
   fname varchar(255) NOT NULL,
-  PRIMARY KEY (author_id)
+  PRIMARY KEY (author_id) ON DELETE CASCADE
 );
 INSERT INTO Authors VALUES ('5698', 'Alexander', 'Christopher');
 INSERT INTO Authors VALUES ('6299', 'Brooks', 'Frederick P.');

@@ -84,6 +84,7 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             authorDao.deleteAuthor(view.getDeleteAuthor());
+            authorDao.deleteRelationAuthorBooks(view.getDeleteAuthor(), view.getDeleteBook());
         }
         
     }
@@ -101,7 +102,8 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
             
-            bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice());
+            bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice(), authors);
+            authors = null;
         }        
     }
     
@@ -137,7 +139,7 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             Publisher publisherToInsert = view.getAddPublisher();
             
-            publisherDao.insertPublisher(publisherToInsert.getUrl(), publisherToInsert.getName());
+            publisherDao.insertPublisher( publisherToInsert.getName(), publisherToInsert.getUrl());
         }
         
     }
@@ -164,7 +166,7 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             publisherDao.deletePublisher(view.getDeletePublishers());
-        
+            
         }
         
     }

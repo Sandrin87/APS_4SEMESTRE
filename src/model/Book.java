@@ -10,7 +10,7 @@ public class Book {
     private double price;
     private int publisher_id;
 
-    public Book(String title, String isbn, List<Author> authors, double price, int publisher_id) {
+    public Book(String title, String isbn, List<Author> authors, double price, int publisher_id1) {
         this.title = title;
         this.isbn = isbn;
         this.price = price;

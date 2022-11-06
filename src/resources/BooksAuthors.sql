@@ -4,7 +4,7 @@ CREATE TABLE BooksAuthors (
   seq_no int,
   FOREIGN KEY (isbn) REFERENCES Books (isbn),
   FOREIGN KEY (author_id) REFERENCES Authors (author_id),
-  PRIMARY KEY (isbn, author_id)
+  PRIMARY KEY (isbn, author_id) ON DELETE CASCADE
 );
 INSERT INTO BooksAuthors VALUES ('0-201-96426-0', '8549', 1);
 INSERT INTO BooksAuthors VALUES ('0-201-96426-0', '8527', 2);

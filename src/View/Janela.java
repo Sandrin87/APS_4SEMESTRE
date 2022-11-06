@@ -450,6 +450,11 @@ public class Janela extends javax.swing.JFrame implements View{
         jLabel7.setText("ISBN:");
 
         txt_isbn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_isbn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_isbnActionPerformed(evt);
+            }
+        });
 
         txt_titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -603,6 +608,10 @@ public class Janela extends javax.swing.JFrame implements View{
     private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_AddEditoraActionPerformed
+
+    private void txt_isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_isbnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_isbnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -979,7 +988,7 @@ public class Janela extends javax.swing.JFrame implements View{
             txt_isbn.setText("");
             txt_Preco.setText("");
        }
-       return new Book(titulo, titulo, authors, price, publisher.getPublisher_id());
+       return new Book(titulo, String.valueOf(isbn), authors, price, publisher.getPublisher_id());
     }
 
     @Override
