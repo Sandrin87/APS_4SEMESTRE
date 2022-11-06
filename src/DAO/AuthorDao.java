@@ -116,13 +116,6 @@ public class AuthorDao implements IAuthorDao {
                 authorsList.add(author);
             }
 
-            System.out.println("Autores recuperado!");
-
-            for(Author author : authorsList){
-                System.out.println(author.getAuthor_id() +
-                        " " + author.getFirstName() +
-                        " " + author.getLastName());
-            }
             return authorsList;
 
         } catch (Exception e){
@@ -131,29 +124,49 @@ public class AuthorDao implements IAuthorDao {
     }
     
     @Override
-    public Author getByFilter(String name, String fName) { //AQ
-        String sql = "SELECT * FROM Authors WHERE name = ? AND fName = ?";
-
+    public List<Author> getByFilter(String fName, String name) {
+        
+        List<Author> authors = new ArrayList<>();
+        
+        String sql = "SELECT * FROM Authors WHERE ";
+        String nameFilter = "";
+        String fNameFilter = "";
+        
         try {
+            if(name != null || !name.equals(""))
+                nameFilter = " name LIKE ? ";
+            
+            if(fName != null || !fName.equals(""))
+            {
+                if(nameFilter.equals(""))
+                    fNameFilter = " fname LIKE ?";
+                
+                fNameFilter = " AND fname LIKE ?";
+            }
+            
+            sql += nameFilter + fNameFilter;
+            
             PreparedStatement pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, name);
+
+            pstm.setString(1, "%"+name+"%");
+
+            if(nameFilter.equals(""))
+                pstm.setString(1, "%"+fName+"%");
+
+            pstm.setString(2, "%"+fName+"%");
 
             ResultSet rs = pstm.executeQuery();
 
-            Author author = null;
-            if(rs.next()){
+            while(rs.next()){
                int author_id = rs.getInt("author_id");
                String names = rs.getString("name");
                String firstName = rs.getString("fname");
 
-               author = new Author(author_id, name, firstName);
-               System.out.println("foi encontrado o autor com o nome: " + names);
-
-               return author;
-
-            } else {
-                System.out.println("Não foi encontrado um autor com o nome: " + name + " " +fName);
-            }
+               authors.add(new Author(author_id, names, firstName));
+               System.out.println("foi encontrado o autor com o nome: " + names + " " + firstName);
+               
+            } 
+            return authors;
 
         } catch (Exception e){
             e.printStackTrace();

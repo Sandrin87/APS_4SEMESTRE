@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
-import DAO.Interfaces.IAuthorDao;
-import DAO.Interfaces.IBookDao;
-import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class Janela extends javax.swing.JFrame implements View{
 
     /**
-     * Creates new form View
+     * Creates new form Viewgi
      */
     
     private DefaultTableModel tbModelAuthors;
@@ -69,8 +62,8 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_EditarEditora = new javax.swing.JButton();
         btn_BuscarEditora = new javax.swing.JButton();
         btn_ExcluirEditora = new javax.swing.JButton();
-        txt_NomeBuscaEditora = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        txt_NomeBuscaEditora = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         txt_NomeEditora = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -98,10 +91,10 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_addListaAutoresLivros = new javax.swing.JButton();
         cbo_EditorasExistentes = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        btn_AddNovoLivro = new javax.swing.JButton();
         txt_Preco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         btn_removeListaAutoresLivros = new javax.swing.JButton();
+        btn_AddNovoLivro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,7 +135,7 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -217,7 +210,7 @@ public class Janela extends javax.swing.JFrame implements View{
                         .addComponent(jLabel6)
                         .addComponent(jLabel5))
                     .addComponent(btn_AddNovoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,15 +251,15 @@ public class Janela extends javax.swing.JFrame implements View{
         btn_ExcluirEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_ExcluirEditora.setText("Excluir");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Nome:");
+
         txt_NomeBuscaEditora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_NomeBuscaEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_NomeBuscaEditoraActionPerformed(evt);
             }
         });
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel13.setText("Nome:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -276,16 +269,16 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(table_Editoras, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                        .addComponent(table_Editoras, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_EditarEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_NomeBuscaEditora)
-                                .addGap(56, 56, 56)
+                                .addGap(50, 50, 50)
                                 .addComponent(btn_ExcluirEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_BuscarEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,8 +292,8 @@ public class Janela extends javax.swing.JFrame implements View{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_NomeBuscaEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13))
+                                .addComponent(jLabel13)
+                                .addComponent(txt_NomeBuscaEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btn_ExcluirEditora))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_EditarEditora)
@@ -344,14 +337,17 @@ public class Janela extends javax.swing.JFrame implements View{
                         .addComponent(txt_NomeEditora)
                         .addGap(184, 184, 184))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel14))
-                    .addComponent(jLabel15)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(txt_SiteEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_AddEditora)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel14))
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(txt_SiteEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_AddEditora)))
+                        .addGap(0, 1, Short.MAX_VALUE)))
                 .addGap(77, 77, 77))
         );
         jPanel6Layout.setVerticalGroup(
@@ -397,6 +393,11 @@ public class Janela extends javax.swing.JFrame implements View{
 
         btn_excluirLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_excluirLivro.setText("Excluir");
+        btn_excluirLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirLivroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -406,7 +407,7 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(table_Livros, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                        .addComponent(table_Livros, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -417,7 +418,7 @@ public class Janela extends javax.swing.JFrame implements View{
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                 .addComponent(btn_excluirLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,10 +430,9 @@ public class Janela extends javax.swing.JFrame implements View{
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_tituloLivroBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
                             .addComponent(btn_excluirLivro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_editarLivro)
@@ -480,14 +480,6 @@ public class Janela extends javax.swing.JFrame implements View{
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Preço R$:");
 
-        btn_AddNovoLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_AddNovoLivro.setText("Adicionar Novo Livro");
-        btn_AddNovoLivro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddNovoLivroActionPerformed(evt);
-            }
-        });
-
         txt_Preco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -495,6 +487,14 @@ public class Janela extends javax.swing.JFrame implements View{
 
         btn_removeListaAutoresLivros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_removeListaAutoresLivros.setText("Remover");
+
+        btn_AddNovoLivro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_AddNovoLivro.setText("Adicionar Novo Livro");
+        btn_AddNovoLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddNovoLivroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -508,7 +508,7 @@ public class Janela extends javax.swing.JFrame implements View{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addGap(0, 98, Short.MAX_VALUE)
+                        .addGap(0, 105, Short.MAX_VALUE)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbo_EditorasExistentes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,14 +528,14 @@ public class Janela extends javax.swing.JFrame implements View{
                                     .addComponent(jLabel11)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btn_AddNovoLivro))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                        .addComponent(btn_removeListaAutoresLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(174, 174, 174))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(btn_AddNovoLivro)
+                        .addGap(16, 16, 16))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +576,10 @@ public class Janela extends javax.swing.JFrame implements View{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -597,17 +600,21 @@ public class Janela extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_AddNovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddNovoLivroActionPerformed
+    private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_AddNovoLivroActionPerformed
+    }//GEN-LAST:event_btn_AddEditoraActionPerformed
 
     private void txt_NomeBuscaEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NomeBuscaEditoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_NomeBuscaEditoraActionPerformed
 
-    private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
+    private void btn_AddNovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddNovoLivroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_AddEditoraActionPerformed
+    }//GEN-LAST:event_btn_AddNovoLivroActionPerformed
+
+    private void btn_excluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_excluirLivroActionPerformed
 
     private void txt_isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_isbnActionPerformed
         // TODO add your handling code here:
@@ -620,7 +627,7 @@ public class Janela extends javax.swing.JFrame implements View{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -711,7 +718,7 @@ public class Janela extends javax.swing.JFrame implements View{
     private javax.swing.JTextField txt_tituloLivroBuscar;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshTableBooks(List<Book> books) {
+        private void refreshTableBooks(List<Book> books) {
         tbModelBooks.setRowCount(0);
         this.fillOutBooksComponents(books);
     }
@@ -719,20 +726,20 @@ public class Janela extends javax.swing.JFrame implements View{
     private void refreshTablePublisher(List<Publisher> publishers) {
         cbo_EditorasExistentes.removeAllItems();
         tbModelPublishers.setRowCount(0);
-        
+
         this.fillOutPublisherComponents(publishers);
     }
 
     private void refreshTableAuthors(List<Author> authors) {
         cbo_autoresExistentes.removeAllItems();
         tbModelAuthors.setRowCount(0);
-        
+
         this.fillOutAuthorsComponents(authors);
     }
-    
+
     private void fillOutAuthorsComponents(List<Author> authors){
         tbModelAuthors = (DefaultTableModel) jtable_Autor.getModel();
-        
+
         for(Author a : authors){
             String tbDataAuthors[] = {String.valueOf(a.getAuthor_id()), a.getFirstName(), a.getLastName()};
             tbModelAuthors.addRow(tbDataAuthors);
@@ -740,10 +747,10 @@ public class Janela extends javax.swing.JFrame implements View{
             cbo_autoresExistentes.addItem(a);
         }
     }
-    
+
     private void fillOutPublisherComponents(List<Publisher> publishers){
         tbModelPublishers = (DefaultTableModel) jtable_Editoras.getModel();
-        
+
         for(Publisher p : publishers){
             String tbDataPublishers[] = {String.valueOf(p.getPublisher_id()), p.getName(), p.getUrl()};
             tbModelPublishers.addRow(tbDataPublishers);
@@ -751,37 +758,37 @@ public class Janela extends javax.swing.JFrame implements View{
             cbo_EditorasExistentes.addItem(p);
         }
     }
-    
+
     private void fillOutBooksComponents(List<Book> books){
         tbModelBooks = (DefaultTableModel) jtable_Livros.getModel();
-        
+
         for(Book b : books){
             String tbDataBooks[] = {b.getIsbn(), b.getTitle(), String.valueOf(b.getPrice())};
             tbModelBooks.addRow(tbDataBooks);
-        } 
+        }
     }
-    
+
     @Override
     public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
         this.fillOutAuthorsComponents(authors);
-        
+
         this.fillOutPublisherComponents(publishers);
-        
+
         this.fillOutBooksComponents(books);
     }
-    
+
     @Override
     public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors) {
         if(books != null && !books.isEmpty())
             this.refreshTableBooks(books);
-            
+
         if(publishers != null && !publishers.isEmpty())
             this.refreshTablePublisher(publishers);
-        
+
         if(authors != null && !authors.isEmpty())
             this.refreshTableAuthors(authors);
     }
-    
+
     @Override
     public void addExistentAuthorsToListActionListner(ActionListener al) {
         btn_addListaAutoresLivros.addActionListener(al);
@@ -790,31 +797,31 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public Author getEditAuthors() {
         if(jtable_Autor.getSelectionModel().isSelectionEmpty())
-            return null;        
-        
+            return null;
+
         int Id = Integer.valueOf(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
         String actualFirstName = jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 1).toString();
         String actualLastName = jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 2).toString();
-        
+
         String completeActualName = actualFirstName + " " + actualLastName;
-        
+
         String refreshedFirstName = JOptionPane.showInputDialog("Deseja atualizar o nome do autor "+completeActualName+" ?");
         String refreshedLastName = JOptionPane.showInputDialog("Deseja atualizar o sobrenome do autor "+completeActualName+" ?");
-        
+
         if(refreshedFirstName == null || refreshedFirstName.equals("") || refreshedFirstName.trim().equals(""))
             refreshedFirstName = actualFirstName;
-        
+
         if(refreshedLastName == null || refreshedLastName.equals("") || refreshedLastName.trim().equals(""))
             refreshedLastName = actualLastName;
-        
+
         return new Author(Id, refreshedLastName, refreshedFirstName);
     }
 
     @Override
     public int getDeleteAuthor() {
         if(jtable_Autor.getSelectionModel().isSelectionEmpty())
-            return 0;  
-        
+            return 0;
+
         return Integer.valueOf(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
     }
 
@@ -836,21 +843,21 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public Book getEditBooks() {
         if(jtable_Livros.getSelectionModel().isSelectionEmpty())
-            return null;        
-        
+            return null;
+
         String isbn = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString();
         String actualBookTitle = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 1).toString();
         String actualBookPrice = jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 2).toString();
-        
+
         String refreshedBookTitle = JOptionPane.showInputDialog("Deseja atualizar o titulo do livro "+actualBookTitle+" ?");
         String refreshedBookPrice = JOptionPane.showInputDialog("Deseja atualizar o preço do livro "+actualBookTitle+" ?");
-        
+
         if(refreshedBookTitle == null || refreshedBookTitle.equals("") || refreshedBookTitle.trim().equals(""))
             refreshedBookTitle = actualBookTitle;
-        
+
         if(refreshedBookPrice == null || refreshedBookPrice.equals("") || refreshedBookPrice.trim().equals(""))
             refreshedBookPrice = actualBookPrice;
-        
+
         double parsedValue = 0.0;
         try{
            parsedValue = Double.parseDouble(refreshedBookPrice);
@@ -858,15 +865,15 @@ public class Janela extends javax.swing.JFrame implements View{
             JOptionPane.showMessageDialog(null,"Valor inserido inválido! o valor : "+ refreshedBookPrice +", não é válido e foi desconsiderado.");
             refreshedBookPrice = actualBookPrice;
         }
-        
+
         return new Book(refreshedBookTitle, isbn, Double.parseDouble(refreshedBookPrice));
     }
 
     @Override
     public String getDeleteBook() {
         if(jtable_Livros.getSelectionModel().isSelectionEmpty())
-            return "";  
-        
+            return "";
+
         return String.valueOf(jtable_Livros.getValueAt(jtable_Livros.getSelectedRow(), 0).toString());
     }
 
@@ -888,28 +895,28 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public Publisher getEditPublishers() {
         if(jtable_Editoras.getSelectionModel().isSelectionEmpty())
-            return null;        
-        
+            return null;
+
         int Id = Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
         String actualName = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 1).toString();
-        
+
         String publisherNameRefreshed = JOptionPane.showInputDialog("Deseja atualizar o nome da editora "+actualName+" ?");
         String publisherUrlRefreshed = JOptionPane.showInputDialog("Deseja atualizar a URL da editora "+actualName+" ?");
-        
+
         if(publisherNameRefreshed == null || publisherNameRefreshed.equals("") || publisherNameRefreshed.trim().equals(""))
             publisherNameRefreshed = actualName;
-        
+
         if(publisherUrlRefreshed == null || publisherUrlRefreshed.equals("") || publisherUrlRefreshed.trim().equals(""))
             publisherUrlRefreshed = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 2).toString();
-        
+
         return new Publisher(Id, publisherNameRefreshed, publisherUrlRefreshed);
     }
 
     @Override
     public int getDeletePublishers() {
         if(jtable_Editoras.getSelectionModel().isSelectionEmpty())
-            return 0;   
-        
+            return 0;
+
         return Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
     }
 
@@ -933,7 +940,7 @@ public class Janela extends javax.swing.JFrame implements View{
         String publisherName = txt_NomeEditora.getText();
         String url = txt_SiteEditora.getText();
         int id = 1;
-        
+
         return new Publisher(id, publisherName, url);
     }
 
@@ -941,7 +948,7 @@ public class Janela extends javax.swing.JFrame implements View{
     public Author getAddAuthor() {
         String name = txt_NomeNovoAutor.getText();
         String fName = txt_SobrenomeNovoAutor.getText();
-        
+
         return new Author(fName, name);
     }
 
@@ -954,7 +961,7 @@ public class Janela extends javax.swing.JFrame implements View{
     public Author getSearchAuthors() {
         String name = txt_NomeAutorBusca.getText();
         String fName = txt_SobrenomeAutorBusca.getText();
-        
+
         return new Author(fName, name);
     }
 
@@ -972,7 +979,7 @@ public class Janela extends javax.swing.JFrame implements View{
                     isbn = Integer.parseInt(txt_isbn.getText());
                     price = Double.parseDouble(txt_Preco.getText());
 
-                    if(isbn < 0) 
+                    if(isbn < 0)
                         throw new Exception("ISBN inválido (o ISBN não pode ser negativo!)");
                     if(price < 0)
                         throw new Exception("Valor inválido! (valor não pode ser negativo)");
@@ -993,7 +1000,7 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public String getSearchBooks() {
-        return txt_titulo.getText();
+        return txt_tituloLivroBuscar.getText();
     }
 
     @Override
@@ -1027,7 +1034,22 @@ public class Janela extends javax.swing.JFrame implements View{
     }
 
     @Override
+    public void searchActionListnerPublisher(ActionListener al) {
+       btn_BuscarEditora.addActionListener(al);
+    }
+
+    @Override
     public String getSearchPublishers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return txt_NomeBuscaEditora.getText();
+    }
+
+    @Override
+    public void searchActionListnerAutor(ActionListener al) {
+        btn_BuscarAutores.addActionListener(al);
+    }
+
+    @Override
+    public void searchActionListnerBook(ActionListener al) {
+       btn_buscarLivro.addActionListener(al);
     }
 }

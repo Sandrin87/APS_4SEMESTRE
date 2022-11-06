@@ -5,5 +5,5 @@ CREATE TABLE Usuario (
   PRIMARY KEY (id)
 );
 
-INSERT INTO Usuario VALUES ('0001', 'adm', '123');
+INSERT INTO Usuario VALUES ('0001', 'admin', '123');
 select * from usuario u 

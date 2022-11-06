@@ -4,9 +4,6 @@
  */
 package View;
 
-import DAO.Interfaces.IAuthorDao;
-import DAO.Interfaces.IBookDao;
-import DAO.Interfaces.IPublisherDao;
 import model.Author;
 import model.Book;
 import model.Publisher;
@@ -76,4 +73,12 @@ public interface View {
     public void initVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
     
     public void refreshVisualComponents(List<Book> books, List<Publisher> publishers, List<Author> authors);
+
+
+    public void searchActionListnerPublisher(ActionListener al);
+
+    public void searchActionListnerBook(ActionListener al);
+
+    public void searchActionListnerAutor(ActionListener al);
+
 }
