@@ -25,7 +25,7 @@ public class UserController implements ViewLogin {
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
-                        IBookDao bookDao = null;
+                        BookDao bookDao = null;
                         try {
                             bookDao = new BookDao();
                         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class UserController implements ViewLogin {
                         }
                         IPublisherDao publisherDao = null;
                         try {
-                            publisherDao = new PublisherDao();
+                            publisherDao = new PublisherDao(bookDao);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

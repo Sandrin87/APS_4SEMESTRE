@@ -26,18 +26,18 @@ public class AuthorDao implements IAuthorDao {
     }
 
     @Override
-    public void insertAuthor(String name, String fName) { //FEITO
-        String sql = "INSERT INTO Authors (name, fName) VALUES (?, ?)";
+    public void insertAuthor(String fName, String name) {
+        String sql = "INSERT INTO Authors (fName, name) VALUES (?, ?)";
 
             try {
                 PreparedStatement ps = conexao.prepareStatement(sql);
 
-                ps.setString(1, name);
-                ps.setString(2, fName);
+                ps.setString(1, fName);
+                ps.setString(2, name);
 
                 ps.execute();
 
-                System.out.println("Autor(a) " + name + " " + fName + " foi incluído com sucesso!");
+                System.out.println("Autor(a) " + fName + " " + name + " foi incluído com sucesso!");
             } catch (Exception e) {
                 e.printStackTrace();
             }    
@@ -188,5 +188,22 @@ public class AuthorDao implements IAuthorDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }    
+    }
+    
+    @Override
+    public void deleteRelationAuthorBooks(int author_id, String isbn) {
+        String sql = "DELETE FROM booksauthors WHERE author_id = ? AND isbn = ?";
+
+                try {
+                     PreparedStatement ps = conexao.prepareStatement(sql);
+
+                     ps.setInt(1, author_id);
+                     ps.setString(2, isbn);
+                     ps.execute();
+
+                     System.out.println("Relação excluída com sucesso");
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }    
     }
 }
