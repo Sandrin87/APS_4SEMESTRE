@@ -28,7 +28,7 @@ public class BookDao implements IBookDao{
     @Override
     public void insertBook(String title, String isbn, int publisherId, double price, List<Author> authors) {
 
-       String sql = "INSERT INTO Books (title, isbn, publisher_id, price) VALUES (?, ?, ?, ?);  ";
+       String sql = "INSERT INTO books (title, isbn, publisher_id, price) VALUES (?, ?, ?, ?)";
        
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class BookDao implements IBookDao{
     @Override
     public void insertRelationBookAuthors(String isbn,  List<Author> authors) {
 
-       String sql = "INSERT INTO BooksAuthors (isbn, author_id, seq_no) VALUES (?, ?, ?)";
+       String sql = "INSERT INTO BooksAuthors (isbn, author_id, seq_no) VALUES (?, ?, ?);";
        
         try {
             int cont = 1;

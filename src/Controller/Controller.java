@@ -66,9 +66,14 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Author authorToInsert = view.getAddAuthor();
-            
-            authorDao.insertAuthor(authorToInsert.getFirstName(), authorToInsert.getLastName());
+            try {
+                Author authorToInsert = view.getAddAuthor();
+                
+                authorDao.insertAuthor(authorToInsert.getFirstName(), authorToInsert.getLastName());
+                view.refreshVisualComponents(null, null, authorDao.getAllAuthors());
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -94,8 +99,16 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            authorDao.deleteAuthor(view.getDeleteAuthor());
-            authorDao.deleteRelationAuthorBooks(view.getDeleteAuthor(), view.getDeleteBook());
+            try {
+                int idAuthor = view.getDeleteAuthor();
+                if(idAuthor > 0)
+                {
+                    authorDao.deleteAuthor(idAuthor);
+                    view.refreshVisualComponents(null, null, authorDao.getAllAuthors());
+                }                
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -104,10 +117,16 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
-            
-            bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), bookToInsert.getPublisher_id(), bookToInsert.getPrice(), authors);
-            authors = null;
+            try {
+                Book bookToInsert = view.getAddBook(authors, view.getPublisherSelected());
+                
+                bookDao.insertBook(bookToInsert.getTitle(), bookToInsert.getIsbn(), view.getPublisherSelected().getPublisher_id(), bookToInsert.getPrice(), authors);
+                authors = new ArrayList<>();
+                view.atualizaTextoListaAutores(authors);
+                view.refreshVisualComponents(bookDao.getAllBooks(), null, null);
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }        
     }
     
@@ -132,7 +151,13 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            bookDao.deleteBook(view.getDeleteBook());
+            try {
+                bookDao.deleteBook(view.getDeleteBook());
+                
+                view.refreshVisualComponents(bookDao.getAllBooks(), null, null);
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -141,9 +166,14 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Publisher publisherToInsert = view.getAddPublisher();
-            
-            publisherDao.insertPublisher( publisherToInsert.getName(), publisherToInsert.getUrl());
+            try {
+                Publisher publisherToInsert = view.getAddPublisher();
+                
+                publisherDao.insertPublisher( publisherToInsert.getName(), publisherToInsert.getUrl());
+                view.refreshVisualComponents(null, publisherDao.getAllPublishers(), null);
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -169,8 +199,12 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            publisherDao.deletePublisher(view.getDeletePublishers());
-            
+            try {
+                publisherDao.deletePublisher(view.getDeletePublishers());
+                view.refreshVisualComponents(null, publisherDao.getAllPublishers(), null);
+            } catch (Exception ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }

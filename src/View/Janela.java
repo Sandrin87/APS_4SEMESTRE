@@ -821,8 +821,15 @@ public class Janela extends javax.swing.JFrame implements View{
     public int getDeleteAuthor() {
         if(jtable_Autor.getSelectionModel().isSelectionEmpty())
             return 0;
-
-        return Integer.valueOf(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
+        
+        int excludeBooksAndAuthors = JOptionPane.showConfirmDialog(null,"Deseja apagar o autor e todos os livros dele?");
+        
+        System.out.println(excludeBooksAndAuthors);
+        
+        if(excludeBooksAndAuthors == 1)
+            return 0 ;
+        
+        return Integer.parseInt(jtable_Autor.getValueAt(jtable_Autor.getSelectedRow(), 0).toString());
     }
 
     @Override
@@ -1010,7 +1017,9 @@ public class Janela extends javax.swing.JFrame implements View{
 
     @Override
     public Publisher getPublisherSelected() {
-        return (Publisher) cbo_EditorasExistentes.getSelectedItem();
+        Publisher p = (Publisher) cbo_EditorasExistentes.getSelectedItem();
+        System.out.println(p.getPublisher_id());
+        return p;
     }
 
     @Override
@@ -1029,7 +1038,7 @@ public class Janela extends javax.swing.JFrame implements View{
             refreshedText = "";
         }
         else{
-            txtArea_AutoresDoLivro.setText("A lista está Vazia...");
+            txtArea_AutoresDoLivro.setText("");
         }
     }
 

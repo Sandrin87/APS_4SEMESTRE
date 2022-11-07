@@ -14,7 +14,7 @@ public class Publisher {
     public Publisher(){}
 
     public int getPublisher_id() {
-        return publisher_id;
+        return this.publisher_id;
     }
 
     public void setPublisher_id(int publisher_id) {

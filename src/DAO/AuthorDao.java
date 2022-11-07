@@ -176,14 +176,16 @@ public class AuthorDao implements IAuthorDao {
   
     @Override
     public void deleteAuthor(int author_id) {
-        String sql = "DELETE FROM Authors WHERE author_id = ?";
+        String sql = "DELETE FROM Authors WHERE author_id = ?;";
 
             try {
+                deleteRelationAuthorBooks(author_id);
+                
                 PreparedStatement ps = conexao.prepareStatement(sql);
 
                 ps.setInt(1, author_id);
                 ps.execute();
-
+                
                 System.out.println("Autor: " + author_id + " foi excluído com sucesso");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -191,14 +193,13 @@ public class AuthorDao implements IAuthorDao {
     }
     
     @Override
-    public void deleteRelationAuthorBooks(int author_id, String isbn) {
-        String sql = "DELETE FROM booksauthors WHERE author_id = ? AND isbn = ?";
+    public void deleteRelationAuthorBooks(int author_id) {
+        String sql = "DELETE FROM booksauthors WHERE author_id = ?";
 
                 try {
                      PreparedStatement ps = conexao.prepareStatement(sql);
 
                      ps.setInt(1, author_id);
-                     ps.setString(2, isbn);
                      ps.execute();
 
                      System.out.println("Relação excluída com sucesso");

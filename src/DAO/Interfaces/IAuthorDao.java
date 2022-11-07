@@ -26,5 +26,5 @@ public interface IAuthorDao {
     
     void deleteAuthor(int author_id);
     
-   void deleteRelationAuthorBooks(int author_id, String isbn);
+   void deleteRelationAuthorBooks(int author_id);
 }

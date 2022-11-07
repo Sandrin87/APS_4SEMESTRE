@@ -14,7 +14,9 @@ public class ConectionDB {
         String user = "root";
         String password = "";
 
-
+        url = "jdbc:mysql://localhost:3306/livrariadb?autoReconnect=true&useSSL=false";
+        password = "Admin@1234";
+        
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
