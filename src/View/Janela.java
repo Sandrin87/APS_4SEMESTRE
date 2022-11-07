@@ -824,8 +824,6 @@ public class Janela extends javax.swing.JFrame implements View{
         
         int excludeBooksAndAuthors = JOptionPane.showConfirmDialog(null,"Deseja apagar o autor e todos os livros dele?");
         
-        System.out.println(excludeBooksAndAuthors);
-        
         if(excludeBooksAndAuthors == 1)
             return 0 ;
         
@@ -915,7 +913,7 @@ public class Janela extends javax.swing.JFrame implements View{
 
         if(publisherUrlRefreshed == null || publisherUrlRefreshed.equals("") || publisherUrlRefreshed.trim().equals(""))
             publisherUrlRefreshed = jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 2).toString();
-
+        
         return new Publisher(Id, publisherNameRefreshed, publisherUrlRefreshed);
     }
 
@@ -923,8 +921,15 @@ public class Janela extends javax.swing.JFrame implements View{
     public int getDeletePublishers() {
         if(jtable_Editoras.getSelectionModel().isSelectionEmpty())
             return 0;
-
-        return Integer.valueOf(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
+        
+        int excludeAllBooks = JOptionPane.showConfirmDialog(null,"Deseja apagar a editora e todos os livros dela?");
+        
+        System.out.println(excludeAllBooks);
+        
+        if(excludeAllBooks >= 1)
+            return 0 ;
+        
+        return Integer.parseInt(jtable_Editoras.getValueAt(jtable_Editoras.getSelectedRow(), 0).toString());
     }
 
     @Override

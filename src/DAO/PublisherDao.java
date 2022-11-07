@@ -187,6 +187,8 @@ public class PublisherDao implements IPublisherDao{
         String sql = "DELETE FROM Publishers WHERE publisher_id = ?";
 
             try {
+                deleteRelationPublisherBooks(publisher_id);
+                
                 PreparedStatement ps = conexao.prepareStatement(sql);
 
                 ps.setInt(1, publisher_id);
@@ -199,20 +201,13 @@ public class PublisherDao implements IPublisherDao{
    }
    
     public void deleteRelationPublisherBooks(int publisher_id) throws Exception{
-        String sql = "DELETE FROM booksauthors WHERE publisher_id = ?";
-
+        
             try {
                 List<Book> books = getBooksWithRelationalPublisher(publisher_id);
                 
                 for(Book b: books){
-                    
                     bookDao.deleteBook(b.getIsbn());
                 }
-                
-                PreparedStatement ps = conexao.prepareStatement(sql);
-
-                ps.setInt(1, publisher_id);
-                ps.execute();
 
                 System.out.println("Relação excluída com sucesso!!!");
             } catch (Exception e) {
@@ -221,7 +216,7 @@ public class PublisherDao implements IPublisherDao{
     }
     
     private List<Book> getBooksWithRelationalPublisher(int publisher_id) throws Exception{
-         String sql = "SELECT * FROM booksauthors WHERE publisher_id = ?"; 
+         String sql = "SELECT * FROM books WHERE publisher_id = ?"; 
          
          List<Book> books = new ArrayList<>();
          

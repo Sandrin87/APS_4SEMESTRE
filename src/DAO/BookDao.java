@@ -201,11 +201,13 @@ public class BookDao implements IBookDao{
         String sql = "DELETE FROM Books WHERE isbn = ?";
 
                 try {
+                    deleteRelationBooksAuthors(isbn);
+                    
                     PreparedStatement ps = conexao.prepareStatement(sql);
 
                     ps.setString(1, isbn);
                     ps.execute();
-
+                    
                     System.out.println("Livro: " + isbn + " foi excluído com sucesso");
                 } catch (Exception e) {
                     e.printStackTrace();
