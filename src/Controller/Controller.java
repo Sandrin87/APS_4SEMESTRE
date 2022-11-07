@@ -85,7 +85,7 @@ public class Controller {
             Author a = view.getEditAuthors();
             if(a != null){
               try {
-                    authorDao.editAuthor(a.getFirstName(), a.getLastName(), a.getAuthor_id());
+                    authorDao.editAuthor(a.getLastName(), a.getFirstName(), a.getAuthor_id());
                     view.refreshVisualComponents(null, null, authorDao.getAllAuthors());
                 } catch (Exception ex) {
                     System.out.println("Erro do sistema.");
