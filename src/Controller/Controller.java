@@ -72,7 +72,7 @@ public class Controller {
                 authorDao.insertAuthor(authorToInsert.getFirstName(), authorToInsert.getLastName());
                 view.refreshVisualComponents(null, null, authorDao.getAllAuthors());
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro do sistema.");
             }
         }
         
@@ -125,7 +125,7 @@ public class Controller {
                 view.atualizaTextoListaAutores(authors);
                 view.refreshVisualComponents(bookDao.getAllBooks(), null, null);
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro do sistema.");
             }
         }        
     }
@@ -156,7 +156,7 @@ public class Controller {
                 
                 view.refreshVisualComponents(bookDao.getAllBooks(), null, null);
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro do sistema.");
             }
         }
         
@@ -172,7 +172,7 @@ public class Controller {
                 publisherDao.insertPublisher( publisherToInsert.getName(), publisherToInsert.getUrl());
                 view.refreshVisualComponents(null, publisherDao.getAllPublishers(), null);
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro do sistema.");
             }
         }
         
@@ -188,7 +188,7 @@ public class Controller {
                     publisherDao.editPublisher(p.getName(), p.getUrl(), p.getPublisher_id());
                     view.refreshVisualComponents(null,publisherDao.getAllPublishers(), null);
                 } catch (Exception ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Erro do sistema.");
                 }
             }
         }
@@ -203,7 +203,7 @@ public class Controller {
                 publisherDao.deletePublisher(view.getDeletePublishers());
                 view.refreshVisualComponents(null, publisherDao.getAllPublishers(), null);
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro do sistema.");
             }
         }
         
