@@ -165,7 +165,6 @@ public class AuthorDao implements IAuthorDao {
                String firstName = rs.getString("fname");
 
                authors.add(new Author(author_id, names, firstName));
-               System.out.println("foi encontrado o autor com o nome: " + names + " " + firstName);
                
             }
             if(authors.size() == 0){

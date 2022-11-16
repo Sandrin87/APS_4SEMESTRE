@@ -7,15 +7,16 @@ package DAO;
 import DAO.Interfaces.IBookDao;
 import DAO.Interfaces.IPublisherDao;
 import database.ConectionDB;
+import model.Book;
 import model.Publisher;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Book;
 
 /**
  *
@@ -47,7 +48,7 @@ public class PublisherDao implements IPublisherDao{
 
               ps.execute();
 
-              System.out.println ("Editora " + name + " foi incluída com sucesso!");
+              JOptionPane.showMessageDialog(null, "Editora " + name + " foi incluída com sucesso!");
 
           }catch (Exception e){
 
@@ -71,7 +72,7 @@ public class PublisherDao implements IPublisherDao{
             if(p != null){
                 ps.setInt(3, p.getPublisher_id());
                 ps.execute();
-                System.out.println("A Editora " + name + " foi alterada!");
+                JOptionPane.showMessageDialog(null, "A Editora " + name + " foi alterada!");
             }
 
         } catch (SQLException e){
@@ -170,8 +171,10 @@ public class PublisherDao implements IPublisherDao{
                 
                 publishers.add(new Publisher(publisherP, names, url));
 
-                System.out.println("Foi encontrado uma Editora com o nome " + names);
-            } 
+            }
+            if(publishers.size() == 0){
+                JOptionPane.showMessageDialog(null, "Não foi encontrada nenhuma editora com o nome: " + name);
+            }
             return publishers;
 
         } catch (Exception e) {
@@ -194,7 +197,7 @@ public class PublisherDao implements IPublisherDao{
                 ps.setInt(1, publisher_id);
                 ps.execute();
 
-                System.out.println("Editora: " + publisher_id + " foi excluída com sucesso!");
+                JOptionPane.showMessageDialog(null, "Editora: " + publisher_id + " foi excluída com sucesso!");
             } catch (Exception e) {
                     e.printStackTrace();
             }   
