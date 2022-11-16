@@ -224,8 +224,6 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            publisherDao.deletePublisher(view.getDeletePublishers());
-            
             if(authors.size() > 0)
                 authors.remove((authors.size()-1));
             
