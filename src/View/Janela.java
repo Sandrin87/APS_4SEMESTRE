@@ -598,6 +598,7 @@ public class Janela extends javax.swing.JFrame implements View{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_AddEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddEditoraActionPerformed
@@ -980,7 +981,7 @@ public class Janela extends javax.swing.JFrame implements View{
     @Override
     public Book getAddBook(List<Author> authors, Publisher publisher) {
        String titulo = "";
-       int isbn = 0;
+       String isbn = "";
        double price = 0;
         try {
             if(txt_titulo.getText().equals("") || txt_isbn.getText().equals("") || txt_Preco.getText().equals("")) {
@@ -988,15 +989,13 @@ public class Janela extends javax.swing.JFrame implements View{
             } else {
                 titulo = txt_titulo.getText();
                 try {
-                    isbn = Integer.parseInt(txt_isbn.getText());
+                    isbn = String.valueOf(Integer.parseInt(txt_isbn.getText()));
                     price = Double.parseDouble(txt_Preco.getText());
 
-                    if(isbn < 0)
-                        throw new Exception("ISBN inválido (o ISBN não pode ser negativo!)");
                     if(price < 0)
                         throw new Exception("Valor inválido! (valor não pode ser negativo)");
                 } catch (java.lang.NumberFormatException e) {
-                    throw new Exception("ISBN inválido (use um número inteiro!)");
+                    throw new Exception("ISBN inválido");
                 }
             }
         } catch (Exception e) {
@@ -1007,7 +1006,7 @@ public class Janela extends javax.swing.JFrame implements View{
             txt_isbn.setText("");
             txt_Preco.setText("");
        }
-       return new Book(titulo, String.valueOf(isbn), authors, price, publisher.getPublisher_id());
+       return new Book(titulo, isbn, authors, price, publisher.getPublisher_id());
     }
 
     @Override

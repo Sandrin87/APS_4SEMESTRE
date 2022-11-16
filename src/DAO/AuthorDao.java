@@ -8,6 +8,7 @@ import DAO.Interfaces.IAuthorDao;
 import database.ConectionDB;
 import model.Author;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class AuthorDao implements IAuthorDao {
 
                 ps.execute();
 
-                System.out.println("Autor(a) " + fName + " " + name + " foi incluído com sucesso!");
+                JOptionPane.showMessageDialog(null, "Autor(a) " + fName + " " + name + " foi incluído com sucesso!");
             } catch (Exception e) {
                 e.printStackTrace();
             }    
@@ -59,6 +60,7 @@ public class AuthorDao implements IAuthorDao {
                 ps.setInt(3, author.getAuthor_id());
                 ps.execute();
                 System.out.println("O autor com o id " + id + " foi alterado!");
+                JOptionPane.showMessageDialog(null, "O autor com o id " + id + " foi alterado!");
             }
 
         }catch (Exception e){
@@ -165,7 +167,10 @@ public class AuthorDao implements IAuthorDao {
                authors.add(new Author(author_id, names, firstName));
                System.out.println("foi encontrado o autor com o nome: " + names + " " + firstName);
                
-            } 
+            }
+            if(authors.size() == 0){
+                JOptionPane.showMessageDialog(null, "Não foi encontrado um autor com o nome: " + fName + " " +name);
+            }
             return authors;
 
         } catch (Exception e){
@@ -185,8 +190,9 @@ public class AuthorDao implements IAuthorDao {
 
                 ps.setInt(1, author_id);
                 ps.execute();
-                
-                System.out.println("Autor: " + author_id + " foi excluído com sucesso");
+
+                JOptionPane.showMessageDialog(null, "Autor: " + author_id + " foi excluído com sucesso");
+
             } catch (Exception e) {
                 e.printStackTrace();
             }    

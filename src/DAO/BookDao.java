@@ -6,14 +6,15 @@ package DAO;
 
 import DAO.Interfaces.IBookDao;
 import database.ConectionDB;
+import model.Author;
 import model.Book;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.Author;
 
 /**
  *
@@ -41,8 +42,7 @@ public class BookDao implements IBookDao{
             ps.execute();
             
             insertRelationBookAuthors(isbn, authors);
-
-            System.out.println(title + " Livro inserido com sucesso!!");
+            JOptionPane.showMessageDialog(null, "Livro inserido com sucesso!!");
         } catch (Exception e) {
             e.printStackTrace();
         
@@ -90,7 +90,7 @@ public class BookDao implements IBookDao{
             if(book != null){
                 ps.setString(3, book.getIsbn());
                 ps.execute();
-                System.out.println("livro editado");
+                JOptionPane.showMessageDialog(null, "Livro editado!");
             }
 
         } catch (Exception e){
@@ -160,7 +160,11 @@ public class BookDao implements IBookDao{
                 Book book = new Book(title, isbn, price, publishers);
                 books.add(book);
             }
+            if(books.size() == 0){
+                JOptionPane.showMessageDialog(null, "Não foi encontrado um livro com o titulo: " + titles);
+            }
             return books;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -209,6 +213,7 @@ public class BookDao implements IBookDao{
                     ps.execute();
                     
                     System.out.println("Livro: " + isbn + " foi excluído com sucesso");
+                    JOptionPane.showMessageDialog(null, "Livro: " + isbn + " foi excluído com sucesso");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }    
